@@ -1,4 +1,4 @@
-# hello Project
+# hello Makefile Project
 This is a simple Makefile and has following tips
 
 1. show how to print variable in Makefile ( for debug)
@@ -18,7 +18,7 @@ endif
 </pre>
 
 # How To Test
-typing 'make' and see the message in screen
+Typing 'make' and see the message in screen
 
 `#make`
 
