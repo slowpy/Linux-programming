@@ -1,5 +1,5 @@
 #Makefile
-#include ./.config
+include ./.config
 MSG=This is test message
 $(warning my check MSG=$(MSG))
 
