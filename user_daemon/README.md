@@ -1,6 +1,42 @@
 # Linux user space daemon sample
 This is a simple linux daemon for demo.
 
+step1: fork and terminate parent
+<pre>
+  if ( (pid = fork()) != 0)
+  exit(0);
+</pre>
+step2: become session leader
+<pre>
+setsid();
+</pre>
+step3:ignore SIGHUP signal
+<pre>
+signal(SIGHUP, SIG_IGN);
+</pre>
+step4: fork and terminate parent to avoid zmobie process 
+<pre>
+if ( (pid = fork()) != 0)
+        exit(0);   
+</pre>
+step5:change working directory as (/)
+<pre>
+chdir("/");
+</pre>
+step6:clear our file mode creation mask
+<pre>
+umask(0);
+</pre>
+step7:close all file description
+<pre>
+for (i=0; i < MAXFD;i++)
+    close(i);
+</pre>
+step8:print log in syslog
+<pre>
+syslog(LOG_INFO, "daemon example ... %d", ii--);
+</pre>
+
 # How To Test
 1. type `make` to build code.
 2. run daemon
