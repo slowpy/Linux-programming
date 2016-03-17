@@ -22,11 +22,12 @@ sudo apt-get install linux-headers-$(uname -r)
 $ sudo insmod ./hello.ko
 </pre>
 3.check the printk() log by typing `dmesg`
-you will see "<1>hello_driver: init" in log
+<pre>you will see "<1>hello_driver: init" in log </pre>
+
 4.uninstall driver
 <pre>
 $ sudo rmmod hello
 </pre>
 5.check the printk() log by typing `dmesg`
-you will see "<1>hello_driver: exit" in log
+<pre>you will see "<1>hello_driver: exit" in log</pre>
 
