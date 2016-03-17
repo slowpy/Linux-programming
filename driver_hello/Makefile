@@ -2,7 +2,7 @@
 obj-m := hello.o
 
 ifeq ($(KERNELDIR),)
-KERNELDIR=/lib/modules/4.4.0-13-generic/build
+KERNELDIR=/lib/modules/$(shell uname -r)/build
 endif
 
 all:
