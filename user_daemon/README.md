@@ -6,7 +6,7 @@ step1: fork and terminate parent
   if ( (pid = fork()) != 0)
   exit(0);
 </pre>
-step2: become session leader
+step2: become session leader (child has different group ID from parent)
 <pre>
 setsid();
 </pre>
