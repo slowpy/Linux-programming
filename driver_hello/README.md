@@ -1,24 +1,19 @@
-# hello Makefile Project
-This is a simple Makefile and has following tips
+# Hello Driver Sample
+This is a driver sample code.
 
-1. show how to print variable in Makefile ( for debug)
+1. Before build sample code, you need to install tools and header files:
+For example in Ubuntu,
 <pre>
-MSG=This is test message
-$(warning my check MSG=$(MSG))
-</pre>
-2. show how to include .config file in Makefile
-<pre> include ./.config </pre>
-3. show how to use 'if...else...' in Makefile
-<pre>
-ifeq ($(CONFIG_ARM),y)
-$(warning my check CONFIG_ARM=yes)
-else
-$(warning my check CONFIG_ARM=no)
-endif
+$ sudo apt-get install build-essential linux-headers-$(uname -r)
 </pre>
 
 # How To Test
-Typing 'make' and see the message in screen
-
-`#make`
-
+1.Typing `make` and see the message in screen
+2.install driver
+<pre>
+$ sudo insmod ./hello.ko
+</pre>
+3.uninstall driver
+<pre>
+$ sudo rmmod hello
+</pre>
