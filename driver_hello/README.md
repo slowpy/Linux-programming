@@ -9,6 +9,7 @@ $ sudo apt-get install build-essential linux-headers-$(uname -r)
 
 # How To Test
 1.Typing `make` and see the message in screen
+
 2.install driver
 <pre>
 $ sudo insmod ./hello.ko
