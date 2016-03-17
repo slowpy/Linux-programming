@@ -1,4 +1,4 @@
-# Linux userspace daemon sample
+# Linux user space daemon sample
 This is a simple linux daemon for demo.
 
 # How To Test
