@@ -10,6 +10,8 @@ step2: become session leader (child has different group ID from parent)
 <pre>
 setsid();
 </pre>
+refs: http://applezu.netdpi.net/2014/02/setsid.html
+
 step3:ignore SIGHUP signal
 <pre>
 signal(SIGHUP, SIG_IGN);
