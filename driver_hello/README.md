@@ -8,7 +8,7 @@ $ sudo apt-get install build-essential linux-headers-$(uname -r)
 </pre>
 
 # How To Test
-1.Typing `make` and see the message in screen
+1.Typing `make` to build code
 
 2.install driver
 <pre>
