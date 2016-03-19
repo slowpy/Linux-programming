@@ -2,8 +2,8 @@
 CC=gcc
 EXE=hello
 
-SRC_DIR   := funcA funcB
-SRC       := $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.c))
+SRC_DIR   := $(shell ls -d */)
+SRC       := $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)*.c))
 OBJ       := $(patsubst %.c,%.o,$(SRC))
 
 $(warning SRC_DIR=====>$(SRC_DIR))
