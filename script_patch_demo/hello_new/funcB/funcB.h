@@ -1,0 +1,4 @@
+/*function declartion*/
+void testFuncB();
+
+
