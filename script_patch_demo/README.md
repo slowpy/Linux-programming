@@ -14,3 +14,5 @@ patch -p1 < hello.patch
 # How To Test
 Typing `test_patch.sh` and see the message in screen
 
+![test result link](http://139.162.35.49/image/Linux-Programming/script_patch_2016-03-22_10.18.28.png)
+
