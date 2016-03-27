@@ -1,4 +1,4 @@
-# Hello Driver Sample
+# Driver Ioctl Sample
 This is a driver sample code to demo: (test on Ubuntu 10.04)
 
 1. How to add ioctl function in driver
