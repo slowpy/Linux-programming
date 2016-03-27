@@ -7,7 +7,9 @@ This is a driver sample code to demo: (test on Ubuntu 10.04)
 
 # How To Test 
 1.build code and install driver
-`./mk.sh build`
+<pre>
+$ ./mk.sh build 
+</pre>
 
 2.run ioctl to test
 <pre>
