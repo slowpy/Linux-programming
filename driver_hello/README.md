@@ -1,6 +1,7 @@
 # Hello Driver Sample
 This is a driver sample code. (test on Ubuntu 10.04)
 
+# How to setup build code environment
 1. install build code tools
 <pre>
 sudo apt-get install build-essential
@@ -12,6 +13,25 @@ ls /lib/modules/$(uname -r)/build
 2. if kernel header files doesn't exist, try to install them.
 <pre>
 sudo apt-get install linux-headers-$(uname -r)
+</pre>
+
+# Code Description
+1. install driver, hello_init() is called: check the code in ./driver_hello/hello.c
+<pre>
+static int hello_init(void) {
+    printk("<1>hello_driver: init\n");
+    return 0;
+}
+...
+module_init(hello_init);
+</pre>
+2.  uninstall driver, hello_exit() is called:  check the code in ./driver_hello/hello.c
+<pre>
+static void hello_exit(void) {
+    printk("<1>hello_driver: exit\n");
+}
+...
+module_exit(hello_exit);
 </pre>
 
 # How To Test 
