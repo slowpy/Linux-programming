@@ -1,6 +1,7 @@
 # Driver Ioctl Sample
 This is a driver sample code to demo how to add and call driver ioctl: (test on Ubuntu 10.04)
 
+# Code Description
 1.register ioctl function in the driver: check the code in the ./driver_ioctl_demo/hello.c
 <pre>
 static struct file_operations hello_fops = {
