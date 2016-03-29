@@ -1,6 +1,7 @@
 # hello Makefile Project
 This is a simple Makefile and has following tips
 
+# Code Description
 1. show how to print variable in Makefile ( for debug)
 <pre>
 MSG=This is test message
