@@ -1,6 +1,29 @@
 #Build shared library(*.so) Sample code
 This sample demo how to bulid and use shared library.
 
+1. Build shared library: check the code in /user_build_library/lib_src/lib_demo_a/Makefile
+<pre>
+$(CC) $(CFLAGS) $(SRC) -o $(LIB_NAME)
+</pre>
+CFLAGS :=-shared -fPIC ==> tell compiler that you want to build as shared library.
+
+2. Link shared library "lib_demo_a.so": check the code in /user_build_library/app_src/app_a/Makefile
+<pre>
+$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(EXE)
+</pre>
+"LDFLAGS" indicate shared library location. "LDLIBS := -l_demo_a" means linking "lib_demo_a.so"
+
+3. Calling shared library functions: check the code in /user_build_library/app_src/app_a/app_a.c
+<pre>
+int main( int argc, char* argv[])
+{
+    //calling function in library
+    test_lib_a();
+    test_lib_a1();
+    return 0;
+}
+</pre>
+
 #How to test
 1. build code
 <pre>$ make</pre>
