@@ -1,6 +1,7 @@
 #Build shared library(*.so) Sample code
 This sample demo how to bulid and use shared library.
 
+# Code Description
 1. Build shared library: check the code in /user_build_library/lib_src/lib_demo_a/Makefile
 <pre>
 $(CC) $(CFLAGS) $(SRC) -o $(LIB_NAME)
