@@ -5,6 +5,7 @@ This sample demo how to bulid and use shared library.
 1. build code
 <pre>$ make</pre>
 2. set LD_LIBRARY_PATH environment variable to export shared library path
+in folder "user_build_library", then run below command.
 <pre>$ export LD_LIBRARY_PATH=$(pwd)/build</pre>
 3. check build folder and find out build result 
 <pre>
