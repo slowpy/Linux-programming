@@ -12,11 +12,16 @@ hello.ko - driver
 </pre>
 3. run app_a and see some log from shared library.
 <pre>$ ./app_a </pre>
+you will see logs:
+<pre>
+test_lib_a() is called (in lib_a.c)
+test_lib_a1() is called (in lib_a1.c)
+</pre>
 
 4. install and uninstall driver: check the README.md of 
 [drv_a](https://github.com/ivan0124/Linux-programming/tree/master/small_template/drv_src/drv_a)
 
-4. remove all build result
+5. remove all build result
 <pre>$ make clean</pre> 
 
 
