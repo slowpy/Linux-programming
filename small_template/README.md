@@ -4,7 +4,7 @@ This is a sample to demo how to bulid app, library and driver by Makefile.
 #How to test
 1. build code
 <pre>$ make</pre>
-2. export shared library path
+2. set LD_LIBRARY_PATH environment variable to export shared library path
 <pre>$ export LD_LIBRARY_PATH=$(pwd)/build</pre>
 3. check build folder and find out build result 
 <pre>
