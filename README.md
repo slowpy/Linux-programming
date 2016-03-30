@@ -8,6 +8,7 @@
 * [user_daemon](https://github.com/ivan0124/Linux-programming/tree/master/user_daemon)
 * [driver_ioctl_demo](https://github.com/ivan0124/Linux-programming/tree/master/driver_ioctl_demo)
 * [user_build_library](https://github.com/ivan0124/Linux-programming/tree/master/user_build_library)
+* [user_smart_log](https://github.com/ivan0124/Linux-programming/tree/master/user_smart_log)
 
 ##Driver sample code
 * [driver_hello](https://github.com/ivan0124/Linux-programming/tree/master/driver_hello)
