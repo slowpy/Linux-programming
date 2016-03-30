@@ -1,6 +1,18 @@
 #include <stdio.h>
 
-test_lib_a(){
-    printf("test_lib_a() is called (in lib_a.c)\n");
+void print_app_name();
+
+#define log(x, ...)  print_app_name();\
+		     printf("[%s()]"x, __FUNCTION__,##__VA_ARGS__);
+
+void print_app_name() {
+ size_t linknamelen;
+ char file[256], cmdline[256] = {0};
+
+ sprintf(file, "/proc/%d/exe", getpid());
+ linknamelen = readlink(file, cmdline, sizeof(cmdline) / sizeof(*cmdline) - 1);
+ cmdline[linknamelen + 1] = 0;
+
+ printf("[LOG][%s]", cmdline);
 }
 
