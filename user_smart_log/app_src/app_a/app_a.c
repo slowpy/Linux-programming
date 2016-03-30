@@ -1,6 +1,6 @@
 /*app_a.c*/
 #include <stdio.h>
-
+/*
 void print_app_name();
 
 #define log(x, ...)  print_app_name();\
@@ -16,10 +16,10 @@ void print_app_name() {
 
  printf("[LOG][%s]", cmdline);
 }
-
+*/
 int main( int argc, char* argv[])
 { 
     log("output smart log...(%s)(number=%d)\n", "hello",238); 
-    test_lib_a();
+    //test_lib_a();
     return 0;
 }
