@@ -28,8 +28,8 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		printk("driver_hello: enter IOCTL_SET_MSG\n");
-        	copy_from_user(pData,(char*)ioctl_param,strlen((char*)ioctl_param));
-        	printk("msg from user space: %s",pData);
+        copy_from_user(pData,(char*)ioctl_param,strlen((char*)ioctl_param));
+       	printk("msg from user space: %s",pData);
 		break;
 
 	case IOCTL_GET_MSG:
