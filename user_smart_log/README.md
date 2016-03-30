@@ -49,7 +49,7 @@ $ export LD_LIBRARY_PATH=$(pwd)/build
 #How to test
 1. build code
 <pre>$ make</pre>
-2. in the user_smart_log directory, run ./build/app_a to see log printed in the screen
+2. in the user_smart_log directory, run ./build/app_a to see log with application name printed in the screen
 <pre>$ ./build/app_a</pre>
 3. clean build result
 <pre>$ make clean</pre>
