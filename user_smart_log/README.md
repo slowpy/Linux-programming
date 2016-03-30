@@ -1,5 +1,5 @@
 #Smart log sample code
-This sample demo how to create and using smart log.
+This sample demo how to create and using smart log which auto adding application as log prefix.
 
 #Code Description
 1. add print_app_name function in the code /user_smart_log/lib_src/lib_log/lib_log.c
