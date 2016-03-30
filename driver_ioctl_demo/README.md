@@ -26,18 +26,23 @@ static int hello_init(void) {
 static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
   
     switch (ioctl_num) {
-	    case IOCTL_SET_MSG:
-		    printk("driver_hello: enter IOCTL_SET_MSG\n");
-		    break;
+	case IOCTL_SET_MSG:
+		printk("driver_hello: enter IOCTL_SET_MSG\n");
+        	copy_from_user(pData,(char*)ioctl_param,strlen((char*)ioctl_param));
+        	printk("msg from user space: %s",pData);
+		break;
 
-	    case IOCTL_GET_MSG:
-		    printk("driver_hello: enter IOCTL_GET_MSG\n");
-		    break;
+	case IOCTL_GET_MSG:
+		printk("driver_hello: enter IOCTL_GET_MSG\n");
+		copy_to_user((char*)ioctl_param,msg,strlen(msg)+1);
+		break;
 
-	    case IOCTL_GET_NTH_BYTE:
-		    printk("driver_hello: enter IOCTL_GET_NTH_BYTE\n");
-		    break;
+	case IOCTL_GET_NTH_BYTE:
+		printk("driver_hello: enter IOCTL_GET_NTH_BYTE\n");
+		copy_to_user((char*)ioctl_param,msg,strlen(msg)+1);
+		break;
     }
+
 
     return 0;
 }
@@ -46,10 +51,9 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
 <pre>
 ioctl_get_nth_byte(int file_desc)
 {
-	printf("get_nth_byte message:");
-
-  ioctl(file_desc, IOCTL_GET_NTH_BYTE, 0);
-
+...
+         ret_val = ioctl(file_desc, IOCTL_GET_NTH_BYTE, message);
+...         
 }
 ...
 main()
