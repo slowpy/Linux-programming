@@ -1,10 +1,5 @@
 #include <stdio.h>
 
-void print_app_name();
-
-#define log(x, ...)  print_app_name();\
-		     printf("[%s()]"x, __FUNCTION__,##__VA_ARGS__);
-
 void print_app_name() {
  size_t linknamelen;
  char file[256], cmdline[256] = {0};

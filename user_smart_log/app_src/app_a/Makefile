@@ -1,5 +1,5 @@
 #Makefile
-CFLAGS	:=-g
+CFLAGS	:=-g -I../../lib_src/lib_log/
 LDFLAGS	:=-L$(BUILD_PATH)
 LDLIBS	:=-l_log
 EXE	:=app_a
