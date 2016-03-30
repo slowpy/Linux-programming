@@ -2,6 +2,7 @@
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/fs.h>
+#include <asm/uaccess.h>
 #include "chardev.h"
 
 MODULE_LICENSE("Dual BSD/GPL");
@@ -20,25 +21,37 @@ static int hello_close(struct inode *inode, struct file *filp) {
 static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
     
     printk("<1>hello_driver: ioctl\n");
-
+    
+    char msg[100]={"msg from hello driver\n"};
+    int size=100*sizeof(char);
+    char* pData=kmalloc(size,GFP_KERNEL);
+    if (!pData){
+	printk("hello_driver: kmalloc fial\n");
+	return -1;
+    }
+    memset(pData,0,size);
     /* 
      * Switch according to the ioctl called  
      */
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		printk("driver_hello: enter IOCTL_SET_MSG\n");
+                copy_from_user(pData,(char*)ioctl_param,strlen((char*)ioctl_param));
+                printk("msg from user space: %s",pData);
 		break;
 
 	case IOCTL_GET_MSG:
 		printk("driver_hello: enter IOCTL_GET_MSG\n");
+		copy_to_user((char*)ioctl_param,msg,strlen(msg)+1);
 		break;
 
 	case IOCTL_GET_NTH_BYTE:
 		printk("driver_hello: enter IOCTL_GET_NTH_BYTE\n");
+		copy_to_user((char*)ioctl_param,msg,strlen(msg)+1);
 		break;
     }
 
-
+    kfree(pData);
     return 0;
 }
 

@@ -17,5 +17,7 @@ case "$1" in
         sudo insmod $MODULE
 	sudo mknod $DEVICE_FILE c $DRV_MAJOR_NUM 0
         sudo chmod 666 $DEVICE_FILE ;;
+     *)
+     echo "help : 'mk.sh build' to build code or 'mk.sh clean' to remove all build result" ;;
 esac
 

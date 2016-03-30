@@ -6,9 +6,9 @@ KERNELDIR=/lib/modules/$(shell uname -r)/build
 endif
 
 all:
-	make -C $(KERNELDIR) M=$(PWD) modules
+	make -C $(KERNELDIR) M=$(shell pwd) modules
 	gcc -o ioctl ioctl.c
 
 clean:
-	make -C $(KERNELDIR) M=$(PWD) clean
+	make -C $(KERNELDIR) M=$(shell pwd) clean
 	rm -rf ./*.o ioctl

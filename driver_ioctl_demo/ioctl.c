@@ -22,7 +22,7 @@ ioctl_set_msg(int file_desc, char *message)
 	ret_val = ioctl(file_desc, IOCTL_SET_MSG, message);
 
 	if (ret_val < 0) {
-		printf("ioctl_set_msg failed:%d\n", ret_val);
+		printf("ioctl_set_msg() failed:%d\n", ret_val);
 		exit(-1);
 	}
 }
@@ -30,7 +30,7 @@ ioctl_set_msg(int file_desc, char *message)
 ioctl_get_msg(int file_desc)
 {
 	int ret_val;
-	char message[100];
+	char message[100]={0};
 
 	/* 
 	 * Warning - this is dangerous because we don't tell
@@ -43,19 +43,25 @@ ioctl_get_msg(int file_desc)
 	ret_val = ioctl(file_desc, IOCTL_GET_MSG, message);
 
 	if (ret_val < 0) {
-		printf("ioctl_get_msg failed:%d\n", ret_val);
+		printf("ioctl_get_msg() failed:%d\n", ret_val);
 		exit(-1);
 	}
 
-	printf("get_msg message:%s\n", message);
+	printf("ioctl_get_msg():%s\n", message);
 }
 
 ioctl_get_nth_byte(int file_desc)
 {
-	printf("get_nth_byte message:");
+	int ret_val=0;
+        char message[100]={0};
 
-        ioctl(file_desc, IOCTL_GET_NTH_BYTE, 0);
-
+        ret_val = ioctl(file_desc, IOCTL_GET_NTH_BYTE, message);
+	
+	if (ret_val < 0) {
+		printf("ioctl_get_nth_byte() failed:%d\n", ret_val);
+		exit(-1);
+	}
+	printf("ioctl_get_nth_byte():%s\n", message);
 }
 
 /* 
