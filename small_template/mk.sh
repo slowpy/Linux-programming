@@ -21,13 +21,13 @@ case "$1" in
 	exit -1;
 esac
 
-MAKE_END_TIME=`date +%s`
-
-duration=$((MAKE_END_TIME-MAKE_START_TIME))
-echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
-
 if [ "$?" != "0" ] ; then
     echo "make $1 Fail!!!"
+    echo "please check the make.log to debug"
 else
     echo "make $1 OK."
 fi
+
+MAKE_END_TIME=`date +%s`
+duration=$((MAKE_END_TIME-MAKE_START_TIME))
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
