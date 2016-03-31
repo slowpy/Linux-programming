@@ -23,5 +23,5 @@ clean:
 	@rm -rf $(BUILD_PATH)
 	@rm -rf ./make.log
 	for sdir in $(SRC_DIR) ; do \
-    		make -C $$sdir clean ; \
+    		make -C $$sdir clean || exit $?; \
 	done
