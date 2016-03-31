@@ -1,7 +1,7 @@
 #!/bin/bash
 VERBOSE=0
 
-MAKE_START=`date +%s`
+MAKE_START_TIME=`date +%s`
 
 case "$1" in
 	build)
@@ -21,10 +21,10 @@ case "$1" in
 	exit -1;
 esac
 
-MAKE_END=`date +%s`
+MAKE_END_TIME=`date +%s`
 
-let="MAKE_TIEM=$MAKE_END-$MAKE_START"
-echo "make time=$MAKE_TIME"
+duration=$((MAKE_END_TIME-MAKE_START_TIME))
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 if [ "$?" != "0" ] ; then
     echo "make $1 Fail!!!"
