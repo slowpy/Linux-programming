@@ -1,9 +1,10 @@
 /*hello.c*/
 #include <stdio.h>
+#include "lib_log.h"
 
 int main( int argc, char* argv[])
 {
-    printf("Hello World\n"); 
+    log("Hello World\n"); 
     testFuncA();
     testFuncA1();
     //calling function in library

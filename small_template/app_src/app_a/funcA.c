@@ -1,8 +1,9 @@
 /*function implementation*/
 #include <stdio.h>
+#include "lib_log.h"
 
 void testFuncA()
 {
-    printf("run testFuncA\n");
+    log("run testFuncA\n");
 }
 

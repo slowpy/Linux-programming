@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "lib_log.h"
 
 test_lib_a1(){
-    printf("test_lib_a1() is called (in lib_a1.c)\n");
+    log("test_lib_a1() is called (in lib_a1.c)\n");
 }
 
