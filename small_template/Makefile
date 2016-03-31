@@ -16,7 +16,7 @@ $(warning DRV_SRC_DIR=====>$(DRV_SRC_DIR))
 all:
 	@mkdir -p $(BUILD_PATH)
 	for sdir in $(SRC_DIR) ; do \
-    		make -C $$sdir ; \
+    		make -C $$sdir || exit $?; \
 	done
 
 clean:
