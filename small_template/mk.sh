@@ -1,6 +1,8 @@
 #!/bin/bash
 VERBOSE=0
 
+MAKE_START=`date +%s`
+
 case "$1" in
 	build)
 	if [ "$VERBOSE" == "0" ] ; then
@@ -19,6 +21,10 @@ case "$1" in
 	exit -1;
 esac
 
+MAKE_END=`date +%s`
+
+let="MAKE_TIEM=$MAKE_END-$MAKE_START"
+echo "make time=$MAKE_TIME"
 
 if [ "$?" != "0" ] ; then
     echo "make $1 Fail!!!"
