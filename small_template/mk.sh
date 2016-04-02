@@ -5,12 +5,14 @@ MAKE_START_TIME=`date +%s`
 
 case "$1" in
 	build)
+	echo "make building..."
 	if [ "$VERBOSE" == "0" ] ; then
    	     make > make.log 2>&1
 	else
    	     make
 	fi ;;
 	clean)
+	echo "make cleaning..."
 	if [ "$VERBOSE" == "0" ] ; then
    	     make clean >> make.log 2>&1
 	else
