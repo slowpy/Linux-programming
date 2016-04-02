@@ -17,8 +17,8 @@
  * it. 
  */
 #define MAJOR_NUM 100
-#define MODULE_NAME "hello"
-#define DEVICE_FILE "/dev/hello"
+#define MODULE_NAME "drv_caller"
+#define DEVICE_FILE "/dev/drv_caller"
 
 /* 
  * Set the message of the device driver 
