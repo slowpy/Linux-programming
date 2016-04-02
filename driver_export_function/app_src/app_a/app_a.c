@@ -95,7 +95,7 @@ main()
 	char *msg = "Message passed by ioctl\n";
         char device_file[256]={0};  
        
-        get_shell_cmd_result("cat ../../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
+        get_shell_cmd_result("cat ../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
         printf("device file = %s\n",device_file);
 	file_desc = open(device_file, 0);
 	if (file_desc < 0) {
