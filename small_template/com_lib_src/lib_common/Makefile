@@ -1,6 +1,6 @@
 #Makefile
 CFLAGS	:=-shared -fPIC
-LIB_NAME	:=lib_log.so
+LIB_NAME	:=lib_common.so
 
 SRC=$(wildcard *.c)
 $(warning SRC=$(SRC))

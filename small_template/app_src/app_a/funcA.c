@@ -1,6 +1,6 @@
 /*function implementation*/
 #include <stdio.h>
-#include "lib_log.h"
+#include "lib_common.h"
 
 void testFuncA()
 {

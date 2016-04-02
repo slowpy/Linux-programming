@@ -1,12 +1,12 @@
 #Makefile
-CFLAGS	:=-g -I../../com_lib_src/lib_log
+CFLAGS	:=-g -I../../com_lib_src/lib_common
 LDFLAGS	:=-L$(BUILD_PATH)
-LDLIBS	:=-l_demo_a -l_log
+LDLIBS	:=-l_demo_a -l_common
 EXE	:=app_a
 SRC	:= $(wildcard *.c)
 OBJ	:= $(patsubst %.c,%.o,$(SRC))
 
-.*.h : ../../com_lib_src/lib_log/
+.*.h : ../../com_lib_src/lib_common/
 
 $(warning OBJ=$(OBJ))
 

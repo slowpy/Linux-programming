@@ -1,6 +1,6 @@
 /*hello.c*/
 #include <stdio.h>
-#include "lib_log.h"
+#include "lib_common.h"
 
 int main( int argc, char* argv[])
 {

@@ -1,7 +1,7 @@
 #Makefile
-CFLAGS	:=-shared -fPIC -I../../com_lib_src/lib_log/
+CFLAGS	:=-shared -fPIC -I../../com_lib_src/lib_common/
 LDFLAGS :=-L$(BUILD_PATH)
-LDLIBS 	:=-l_log
+LDLIBS 	:=-l_common
 LIB_NAME	:=lib_demo_a.so
 
 SRC=$(wildcard *.c)
