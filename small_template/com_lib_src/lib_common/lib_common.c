@@ -23,3 +23,24 @@ void print_app_name() {
  
 }
 
+int get_script_result(char* cmd, char* res, int res_size){
+
+	int len=0;
+ char buf[256]={0};
+ FILE* fp=NULL;
+ fp=popen(cmd,"r");
+
+ if(fp != NULL){
+	    while(fgets(buf,sizeof(buf),fp)){
+			      strncat(res,buf,res_size-strnlen(res,res_size));
+		   }
+		   pclose(fp);
+ }
+ else{
+	    return -1;
+ }
+	len=strnlen(res,res_size-1);
+	res[len-1]=0;
+ return 0;
+}
+
