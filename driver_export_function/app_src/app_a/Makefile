@@ -1,5 +1,5 @@
 #Makefile
-CFLAGS	:=-g -I../../com_lib_src/lib_common
+CFLAGS	:=-g -I../../com_lib_src/lib_common -I../../drv_src/drv_caller
 LDFLAGS	:=-L$(BUILD_PATH)
 LDLIBS	:=-l_demo_a -l_common
 EXE	:=app_a
