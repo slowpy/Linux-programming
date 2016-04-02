@@ -1,6 +1,6 @@
 #!/bin/bash
-MODULE=./hello.ko
 MODULE_NAME=`cat ./chardev.h | grep "#define MODULE_NAME" | cut -d "\"" -f 2`
+MODULE=$MODULE_NAME.ko
 DEVICE_FILE=`cat ./chardev.h | grep "#define DEVICE_FILE" | cut -d "\"" -f 2`
 DRV_MAJOR_NUM=`cat ./chardev.h | grep "#define MAJOR_NUM" | cut -d " " -f 3`
 
