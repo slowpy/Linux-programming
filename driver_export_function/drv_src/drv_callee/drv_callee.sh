@@ -1,5 +1,5 @@
 #!/bin/bash
-CHARDEV_H=../drv_src/drv_caller/chardev_callee.h
+CHARDEV_H=../drv_src/drv_callee/chardev_callee.h
 MODULE_NAME=`cat $CHARDEV_H | grep "#define MODULE_NAME" | cut -d "\"" -f 2`
 MODULE=$MODULE_NAME.ko
 DEVICE_FILE=`cat $CHARDEV_H | grep "#define DEVICE_FILE" | cut -d "\"" -f 2`
