@@ -7,6 +7,8 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+extern int hello_export(void);
+
 
 static int drv_caller_open(struct inode *inode, struct file *filp) {
     printk("<1>drv_caller: open\n");
@@ -28,6 +30,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		printk("drv_caller: enter IOCTL_SET_MSG\n");
+		hello_export();
 		break;
 
 	case IOCTL_GET_MSG:

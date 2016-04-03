@@ -60,6 +60,11 @@ static struct file_operations caller_fops = {
     .write = drv_callee_write,
 };
 
+int export_hello(void) {
+    printk("Hello from another module");
+    return 0;
+} 
+
 static int drv_callee_init(void) {
     
     int result=0;
@@ -80,6 +85,9 @@ static void drv_callee_exit(void) {
     /* Unregister character device */
     unregister_chrdev(MAJOR_NUM, MODULE_NAME);
 }
+
+/*Export symbol*/
+EXPORT_SYMBOL(export_hello);
 
 module_init(drv_callee_init);
 module_exit(drv_callee_exit);
