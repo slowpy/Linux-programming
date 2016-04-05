@@ -7,7 +7,7 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
-
+/*
 static int drv_callee_open(struct inode *inode, struct file *filp) {
     printk("<1>drv_callee: open\n");
     return 0;
@@ -22,9 +22,6 @@ static int drv_callee_ioctl(struct inode *inode, struct file *filp, unsigned int
     
     printk("<1>drv_callee: ioctl\n");
     
-    /* 
-     * Switch according to the ioctl called  
-     */
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		printk("drv_callee: enter IOCTL_SET_MSG\n");
@@ -59,7 +56,7 @@ static struct file_operations caller_fops = {
     .read = drv_callee_read,
     .write = drv_callee_write,
 };
-
+*/
 int export_hello(void) {
     printk("Hello from another module");
     return 0;
@@ -69,21 +66,20 @@ static int drv_callee_init(void) {
     
     int result=0;
     printk("<1>drv_callee: init\n");
-
-    /* Register character device */
+/*
     result = register_chrdev(MAJOR_NUM, MODULE_NAME, &caller_fops);
     if (result < 0) {
         printk("<1>driver_callee: Failed to register character device\n");
         return result;
     }
+*/
     return 0;
 }
 
 static void drv_callee_exit(void) {
     printk("<1>drv_callee: exit\n");
 
-    /* Unregister character device */
-    unregister_chrdev(MAJOR_NUM, MODULE_NAME);
+    //unregister_chrdev(MAJOR_NUM, MODULE_NAME);
 }
 
 /*Export symbol*/
