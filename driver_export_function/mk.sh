@@ -18,8 +18,25 @@ case "$1" in
 	else
    	     make clean
 	fi ;;
+	install)
+	cd ./build
+	./drv_callee.sh install
+	./drv_caller.sh install
+	cd .. ;;
+	uninstall)
+	cd ./build
+	./drv_caller.sh uninstall
+	./drv_callee.sh uninstall
+	cd .. ;;
+	test)
+	cd ./build
+        export LD_LIBRARY_PATH=$(pwd)
+	./app_a
+	cd .. ;;
 	*)
 	echo "'mk.sh build' to build code. 'mk.sh clean to clean build result'"
+	echo "'mk.sh install' to install drivers. 'mk.sh uninstall' to uninstall drviers"
+	echo "'mk.sh test' to test "
 	exit -1;
 esac
 

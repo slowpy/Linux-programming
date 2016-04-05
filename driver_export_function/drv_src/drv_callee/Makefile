@@ -1,6 +1,5 @@
 #driver Makefile
 MODULE_NAME=drv_callee
-obj-m := -DEXPORT_SYMTAB
 obj-m := $(MODULE_NAME).o
 
 
