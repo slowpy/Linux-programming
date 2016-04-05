@@ -1,30 +1,73 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#Driver Export function Sample code
+This sampe demo the driver how to export function and the driver how to use the exported function.
+
+#Code Description
+1. the driver `drv_callee.ko` export function `export_hello()`: in the code ./driver_export_function/drv_src/drv_callee/drv_callee.c
+<pre>
+...
+int export_hello(void) {
+    printk("Hello from another module");
+    return 0;
+} 
+...
+EXPORT_SYMBOL(export_hello);
+</pre>
+
+2. add -DEXPORT_SYMTAB in `drv_callee` and copy `drv_callee` Modules.symvers to the `drv_caller`: in the code ./driver_export_function/drv_src/drv_callee/Makefile
+<pre>
+...
+obj-m := -DEXPORT_SYMTAB
+...
+@cp -rf Module.symvers ../drv_caller/
+...
+</pre>
+
+3. declare function `export_hello()` and calling it: in the code ./driver_export_function/drv_src/drv_caller/drv_caller.c
+<pre>
+...
+extern int export_hello(void);
+...
+export_hello();
+...
+</pre>
+
+4. `app_a` set ioctl to `drv_callee.ko` to trigger the test: in the code /driver_export_function/app_src/app_a/app_a.c
+<pre>
+...
+ioctl(file_desc, IOCTL_SET_MSG, message);
+...
+</pre>
 
 #How to test
 1. build code
-<pre>$ make</pre>
+<pre>$ mk.sh build</pre>
 2. set LD_LIBRARY_PATH environment variable to export shared library path.
-in the folder "small_template", then run below command.
+in the directory "driver_export_function", then run below command.
 <pre>$ export LD_LIBRARY_PATH=$(pwd)/build</pre>
-3. check build folder and find out build result 
+3. check `build` directory and find out build result 
 <pre>
 app_a - application
-lib_demo_a.so, lib_demo_b.so - shared library
-hello.ko - driver
+drv_callee.sh, drv_caller.sh - script for install and uninstall driver
+drv_callee.ko, drv_caller.ko - driver
 </pre>
-4. run app_a and see some log from shared library.
-<pre>$ ./app_a </pre>
-you will see logs:
+4. install driver drv_callee.ko and drv_caller.ko
 <pre>
-test_lib_a() is called (in lib_a.c)
-test_lib_a1() is called (in lib_a1.c)
+$ drv_callee.sh install
+$ drv_caller.sh install
 </pre>
 
-5. install and uninstall driver: check the README.md of 
-[drv_a](https://github.com/ivan0124/Linux-programming/tree/master/small_template/drv_src/drv_a)
+5. run app_a to test
+<pre>$ app_a </pre>
 
-6. remove all build result
-<pre>$ make clean</pre> 
+6. uninstall drivers
+<pre>
+$ drv_caller.sh uninstall
+$ drv_callee.sh uninstall
+</pre> 
+
+7. remove all build result
+<pre>
+$ mk.sh clean
+</pre>
 
 
