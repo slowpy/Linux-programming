@@ -1,6 +1,7 @@
 #!/bin/bash
-CHARDEV_H=../drv_src/drv_a/chardev_a.h
+#CHARDEV_H=../drv_src/drv_hello/chardev_hello.h
 MODULE_NAME=`cat $CHARDEV_H | grep "#define MODULE_NAME" | cut -d "\"" -f 2`
+CHARDEV_H=../drv_src/$MODULE_NAME/chardev_$(MODULE_NAME).h
 MODULE=$MODULE_NAME.ko
 DEVICE_FILE=`cat $CHARDEV_H | grep "#define DEVICE_FILE" | cut -d "\"" -f 2`
 DRV_MAJOR_NUM=`cat $CHARDEV_H | grep "#define MAJOR_NUM" | cut -d " " -f 3`
