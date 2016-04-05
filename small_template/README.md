@@ -3,26 +3,32 @@ This is a sample to demo how to bulid app, library and driver by Makefile.
 
 #How to test
 1. build code
-<pre>$ make</pre>
-2. set LD_LIBRARY_PATH environment variable to export shared library path.
-in the folder "small_template", then run below command.
-<pre>$ export LD_LIBRARY_PATH=$(pwd)/build</pre>
-3. check build folder and find out build result 
+<pre>$ mk.sh build</pre>
+
+2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-lib_demo_a.so, lib_demo_b.so - shared library
-hello.ko - driver
-</pre>
-4. run app_a and see some log from shared library.
-<pre>$ ./app_a </pre>
-you will see logs:
-<pre>
-test_lib_a() is called (in lib_a.c)
-test_lib_a1() is called (in lib_a1.c)
+lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
+drv_hello.ko - driver
 </pre>
 
-5. install and uninstall driver: check the README.md of 
-[drv_a](https://github.com/ivan0124/Linux-programming/tree/master/small_template/drv_src/drv_a)
+3. install driver.
+<pre>$ mk.sh install</pre>
+type `dmesg` to see below logs
+<pre>
+drv_hello: init
+</pre>
+
+4. run app_a to test. you will see some logs in the screen.
+<pre>$ mk.sh test </pre>
+
+
+5. uninstall driver
+<pre>$ mk.sh uninstall</pre>
+type `dmesg` to see below logs
+<pre>
+drv_hello: exit
+</pre>
 
 6. remove all build result
 <pre>$ make clean</pre> 
