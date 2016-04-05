@@ -34,10 +34,12 @@ case "$1" in
 	./app_a
 	cd .. ;;
 	*)
-	echo "'mk.sh build' to build code. 'mk.sh clean to clean build result'"
-	echo "'mk.sh install' to install drivers. 'mk.sh uninstall' to uninstall drviers"
-	echo "'mk.sh test' to test "
-	exit -1;
+	echo "step1:'mk.sh build' to build code."
+	echo "step2:'mk.sh install' to install drivers, then type 'dmesg' to see logs"
+	echo "step3:'mk.sh test' to test, then type 'dmesg' to see logs"
+	echo "step4:'mk.sh test' to test, then type 'dmesg' to see logs "
+	echo "step2:'mk.sh clean to clean build result."
+	exit -1 ;;
 esac
 
 if [ "$?" != "0" ] ; then
