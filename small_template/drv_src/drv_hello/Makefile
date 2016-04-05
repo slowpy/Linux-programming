@@ -1,5 +1,5 @@
 #driver Makefile
-MODULE_NAME=hello
+MODULE_NAME=drv_hello
 obj-m := $(MODULE_NAME).o
 
 ifeq ($(KERNELDIR),)
