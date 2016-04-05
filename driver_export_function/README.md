@@ -13,10 +13,8 @@ int export_hello(void) {
 EXPORT_SYMBOL(export_hello);
 </pre>
 
-2. add -DEXPORT_SYMTAB in `drv_callee` and copy `drv_callee` Modules.symvers to the `drv_caller`: in the code ./driver_export_function/drv_src/drv_callee/Makefile
+2. copy `drv_callee` Modules.symvers to the `drv_caller`: in the code ./driver_export_function/drv_src/drv_callee/Makefile
 <pre>
-...
-obj-m := -DEXPORT_SYMTAB
 ...
 @cp -rf Module.symvers ../drv_caller/
 ...
@@ -41,31 +39,44 @@ ioctl(file_desc, IOCTL_SET_MSG, message);
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
-2. set LD_LIBRARY_PATH environment variable to export shared library path.
-in the directory "driver_export_function", then run below command.
-<pre>$ export LD_LIBRARY_PATH=$(pwd)/build</pre>
-3. check `build` directory and find out build result 
+2. check `build` directory and find out build result 
 <pre>
 app_a - application
 drv_callee.sh, drv_caller.sh - script for install and uninstall driver
 drv_callee.ko, drv_caller.ko - driver
 </pre>
-4. install driver drv_callee.ko and drv_caller.ko
+3. install driver drv_callee.ko and drv_caller.ko
 <pre>
-$ drv_callee.sh install
-$ drv_caller.sh install
+$ mk.sh install
+</pre>
+type `dmesg`, you will see below logs
+<pre>
+drv_callee: init
+drv_caller: init
 </pre>
 
-5. run app_a to test
-<pre>$ app_a </pre>
-
-6. uninstall drivers
+4. run app_a to test
+<pre>$ mk.sh test </pre>
+type `dmesg`, you will see below logs
 <pre>
-$ drv_caller.sh uninstall
-$ drv_callee.sh uninstall
-</pre> 
+drv_caller: ioctl
+drv_caller: enter IOCTL_SET_MSG
+drv_callee: export_hello() is called
+drv_caller: close
+</pre>
 
-7. remove all build result
+5. uninstall drivers
+<pre>
+$ mk.sh uninstall
+</pre>
+type `dmesg`, you will see below logs
+<pre>
+drv_caller: exit
+drv_callee: exit
+</pre>
+
+
+6. remove all build result
 <pre>
 $ mk.sh clean
 </pre>
