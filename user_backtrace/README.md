@@ -55,7 +55,7 @@ you will see test result as below:
 #How to find function name from app_a.objdump
 1. select the address in the backtrace log
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_0.png)
-2. find out address 0x400717 belong `dump` function. 
+2. check the `app_a.objdump` and find out address 0x400717 belong `dump` function. 
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_1.png)
-3. find out address 0x4007e3 belong `func_c` function. 
+3. check the `app_a.objdump` and find out address 0x4007e3 belong `func_c` function. 
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_2.png)
