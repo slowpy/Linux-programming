@@ -25,10 +25,8 @@ case "$1" in
 	cd .. ;;
 	*)
 	echo "step1: 'mk.sh build' to build code. 'mk.sh clean to clean build result'"
-	echo "step2: 'mk.sh install' to install the driver. type 'demsg' to see logs"
-	echo "step3: 'mk.sh test' to test."
-	echo "step4: 'mk.sh uninstall' to uninstall the driver. type 'dmesg' to see logs"
-	echo "step5: 'mk.sh clean to clean build result'"
+	echo "step2: 'mk.sh test' to test."
+	echo "step3: 'mk.sh clean to clean build result'"
 	exit -1 ;;
 esac
 
