@@ -56,7 +56,7 @@ you will see test result as below:
 ![test result link](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407.png)
 
 4. remove all build result
-<pre>$ make clean</pre> 
+<pre>$ mk.sh clean</pre> 
 
 #How to find function name from app_a.objdump
 1. select the address in the backtrace log
