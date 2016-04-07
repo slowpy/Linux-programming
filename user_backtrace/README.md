@@ -1,6 +1,39 @@
 #Backtrace Sample code
 This sample demo how to generate and analyze backtrace.
 
+#Code Description
+1. register function for segmentation fault signal : int the code ./user_backtrace/app_src/app_a/app_a.c
+<pre>
+...
+void dump(int signo)
+{
+...
+}
+...
+int main(){
+        signal(SIGSEGV, dump);
+...
+}
+
+</pre>
+
+2. calling function to print call stack: in the code ./user_backtrace/app_src/app_a/app_a.c
+<pre>
+void dump(int signo)
+{
+...
+        size = backtrace (array, 30);
+        strings = backtrace_symbols (array, size);
+ 
+        fprintf (stderr,"Obtained %zd stack frames.nm\n", size);
+ 
+        for (i = 0; i < size; i++)
+            fprintf (stderr,"%sn\n", strings[i]);
+...
+}
+</pre>
+    
+
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
@@ -8,6 +41,7 @@ This sample demo how to generate and analyze backtrace.
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
+app_a.objdump - disassemble code for app_a
 </pre>
 
 3. run app_a to test. you will see some logs in the screen.
