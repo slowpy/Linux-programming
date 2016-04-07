@@ -10,7 +10,7 @@ case "$1" in
    	     make > make.log 2>&1
 	else
    	     make
-	fi ;;
+	fi;;
 	clean)
 	echo "make cleaning..."
 	if [ "$VERBOSE" == "0" ] ; then
@@ -21,6 +21,7 @@ case "$1" in
 	test)
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
+	objdump -d ./app_a > app_a.objdump
 	./app_a
 	cd .. ;;
 	*)
@@ -35,6 +36,11 @@ if [ "$?" != "0" ] ; then
     echo "please check the make.log to debug"
 else
     echo "make $1 OK."
+    if [ "$1" == "build" ] ; then
+        cd ./build
+        objdump -d ./app_a > app_a.objdump 
+        cd ..
+    fi
 fi
 
 MAKE_END_TIME=`date +%s`
