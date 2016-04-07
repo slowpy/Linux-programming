@@ -32,7 +32,13 @@ void dump(int signo)
 ...
 }
 </pre>
-    
+
+3. generate `app_a.objdump` file: in the code /user_backtrace/mk.sh
+<pre>
+...
+objdump -d ./app_a > app_a.objdump
+...
+</pre>
 
 #How to test
 1. build code
