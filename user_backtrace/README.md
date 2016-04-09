@@ -41,10 +41,10 @@ CFLAGS :=-g
 ...
 </pre>
 
-4. generate `app_a.objdump` file: in the code /user_backtrace/mk.sh
+4. generate `app_a.s` file: in the code /user_backtrace/mk.sh
 <pre>
 ...
-objdump -S ./app_a > app_a.objdump
+objdump -S ./app_a > app_a.s
 ...
 </pre>
 
@@ -67,7 +67,7 @@ you will see test result as below:
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
-#How to find function name from app_a.objdump
+#How to find function name from app_a.s
 1. select the address in the backtrace log
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_0.png)
 2. check the `app_a.objdump` and find out address `0x400717` belong `dump` function. 
