@@ -34,13 +34,12 @@ void dump(int signo)
 }
 </pre>
 
-3.let objdump can generate C source code: in the code ./user_backtrace/app_src/app_a/Makefile
+3. let objdump can generate C source code: in the code ./user_backtrace/app_src/app_a/Makefile
 <pre>
 ...
 CFLAGS :=-g
 ...
 </pre>
-
 
 4. generate `app_a.objdump` file: in the code /user_backtrace/mk.sh
 <pre>
