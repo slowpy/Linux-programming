@@ -56,7 +56,7 @@ objdump -S ./app_a > app_a.s
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-app_a.objdump - disassemble code for app_a
+app_a.s - disassemble and source code for app_a
 </pre>
 
 3. run app_a to test. you will see some logs in the screen.
