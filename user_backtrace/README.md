@@ -73,4 +73,4 @@ you will see test result as below:
 2. check the `app_a.objdump` and find out address `0x400717` belong `dump` function. 
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409_1.png)
 3. check the `app_a.objdump` and find out address `0x4007e3` belong `func_c` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409.png)
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409_3.png)
