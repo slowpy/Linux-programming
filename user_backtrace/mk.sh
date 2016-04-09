@@ -21,7 +21,6 @@ case "$1" in
 	test)
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
-	objdump -d ./app_a > app_a.objdump
 	./app_a
 	cd .. ;;
 	*)
@@ -38,7 +37,7 @@ else
     echo "make $1 OK."
     if [ "$1" == "build" ] ; then
         cd ./build
-        objdump -d ./app_a > app_a.objdump 
+        objdump -S ./app_a > app_a.s
         cd ..
     fi
 fi
