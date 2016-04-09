@@ -14,8 +14,9 @@ int main(){
         signal(SIGSEGV, dump);
 ...
 }
-
 </pre>
+
+
 
 2. calling function to print call stack: in the code ./user_backtrace/app_src/app_a/app_a.c
 <pre>
@@ -33,12 +34,21 @@ void dump(int signo)
 }
 </pre>
 
-3. generate `app_a.objdump` file: in the code /user_backtrace/mk.sh
+3.let objdump can generate C source code: in the code ./user_backtrace/app_src/app_a/Makefile
 <pre>
 ...
-objdump -d ./app_a > app_a.objdump
+CFLAGS :=-g
 ...
 </pre>
+
+
+4. generate `app_a.objdump` file: in the code /user_backtrace/mk.sh
+<pre>
+...
+objdump -S ./app_a > app_a.objdump
+...
+</pre>
+
 
 #How to test
 1. build code
@@ -62,6 +72,6 @@ you will see test result as below:
 1. select the address in the backtrace log
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_0.png)
 2. check the `app_a.objdump` and find out address `0x400717` belong `dump` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_1.png)
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409_1.png)
 3. check the `app_a.objdump` and find out address `0x4007e3` belong `func_c` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_2.png)
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409.png)
