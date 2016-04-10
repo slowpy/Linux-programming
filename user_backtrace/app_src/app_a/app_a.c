@@ -8,6 +8,10 @@ void dump(int signo)
     size_t size;
     char **strings;
     size_t i;
+
+    char cmd[1024]={0};
+    snprintf(cmd,sizeof(cmd),"cat /proc/%d/maps",getpid());
+    system(cmd);
  
     size = backtrace (array, 30);
     strings = backtrace_symbols (array, size);
