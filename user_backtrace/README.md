@@ -62,15 +62,13 @@ app_a.s - disassemble and source code for app_a
 3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
 you will see test result as below:
-![test result link](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407.png)
+![test result link](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_1.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
-#How to find function name from app_a.s
-1. select the address in the backtrace log
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160407_0.png)
-2. check the `app_a.s` and find out address `0x400717` belong `dump` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409_1.png)
-3. check the `app_a.s` and find out address `0x4007e3` belong `func_c` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160409_3.png)
+#How to mapping backtrace address's source code
+1. find out address belong which binary
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_1.png)
+2. from step1, we know it belong `app_a`. so check the `app_a.s` and find out address `0x400927` belong `func_c` function. 
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_2.png)
