@@ -68,7 +68,7 @@ you will see test result as below:
 <pre>$ mk.sh clean</pre> 
 
 #How to mapping backtrace address's source code
-1. find out address belong which binary
+1. find out address `0x400927` belong which binary
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_1.png)
 2. from step1, we know it belong `app_a`. so check the `app_a.s` and find out address `0x400927` belong `func_c` function. 
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_2.png)
