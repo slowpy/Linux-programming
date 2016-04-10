@@ -1,4 +1,4 @@
-#Backtrace Sample code
+#Shared library backtrace Sample code
 This sample demo how to generate and analyze backtrace.
 
 #Code Description
@@ -71,13 +71,20 @@ lib_demo_a.s - disassemble and source code for lib_demo_a.so
 3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
 you will see test result as below:
-![test result link](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160416_1.png)
+![test result link](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160410_1.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 #How to mapping backtrace address's source code
-1. find out address `0x400927` belong which binary
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_1.png)
-2. from step1, we know it belong `app_a`. so check the `app_a.s` and find out address `0x400927` belong `func_c` function. 
-![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_backtrace_20160410_2.png)
+1. find out address `7f7263656788` belong which binary
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160410_1.png)
+2. caculate the address in the shared library:
+<pre>
+0x7f7263656000 - from /proc/{PID}/maps, you can find in the above step 1.
+0x7f7263656788 - backtrace address, you can find in the above step 1
+0x7f7263656788 - 0x7f7263656000 = 0x788
+</pre>
+
+3. from step1, we know it belong `lib_demo_so.a`. so check the `lib_demo_so.s` and find out address `0x788` belong `test_lib_a()` function.
+![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160410_2.png)
