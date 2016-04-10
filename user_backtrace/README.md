@@ -16,7 +16,7 @@ int main(){
 }
 </pre>
 
-2. print application memory mapping: int the code ㄡ/user_backtrace/app_src/app_a/app_a.c
+2. print application memory mapping: in the code ./user_backtrace/app_src/app_a/app_a.c
 <pre>
 void dump(int signo)
 {
