@@ -77,7 +77,7 @@ you will see test result as below:
 <pre>$ mk.sh clean</pre> 
 
 #How to mapping backtrace address's source code
-1. find out address `7f7263656788` belong which binary
+1. find out address `0x7f7263656788` belong which binary
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160410_1.png)
 2. caculate the address in the shared library:
 <pre>
