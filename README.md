@@ -10,6 +10,7 @@
 * [user_build_library](https://github.com/ivan0124/Linux-programming/tree/master/user_build_library)
 * [user_smart_log](https://github.com/ivan0124/Linux-programming/tree/master/user_smart_log)
 * [user_backtrace](https://github.com/ivan0124/Linux-programming/tree/master/user_backtrace)
+* [user_shared_library_backtrace](https://github.com/ivan0124/Linux-programming/tree/master/user_shared_library_backtrace)
 
 
 ##Driver sample code
