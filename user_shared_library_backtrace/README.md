@@ -86,5 +86,5 @@ you will see test result as below:
 0x7f7263656788 - 0x7f7263656000 = 0x788
 </pre>
 
-3. from step1, we know it belong `lib_demo_so.a`. so check the `lib_demo_so.s` and find out address `0x788` belong `test_lib_a()` function.
+3. from step1, we know it belong `lib_demo_a.so`. so check the `lib_demo_a.s` and find out address `0x788` belong `test_lib_a()` function.
 ![select backtrace log](http://139.162.35.49/image/Linux-Programming/user_shared_library_backtrace_20160410_2.png)
