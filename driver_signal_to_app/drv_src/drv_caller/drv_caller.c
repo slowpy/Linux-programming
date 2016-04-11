@@ -7,8 +7,6 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
-extern int export_hello(void);
-
 
 static int drv_caller_open(struct inode *inode, struct file *filp) {
     printk("<1>drv_caller: open\n");
@@ -24,13 +22,19 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
     
     printk("<1>drv_caller: ioctl\n");
     
+    int size=100*sizeof(char);
+    char* pData=kmalloc(size,GFP_KERNEL);
+    if (!pData){
+	printk("hello_driver: kmalloc fail\n");
+	return -1;
+    } 
     /* 
      * Switch according to the ioctl called  
      */
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		printk("drv_caller: enter IOCTL_SET_MSG\n");
-		export_hello();
+		copy_from_user(pData,(char*)ioctl_param,strlen((char*)ioctl_param));
 		break;
 
 	case IOCTL_GET_MSG:
@@ -42,6 +46,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
 		break;
     }
 
+    kfree(pData);
     return 0;
 }
 

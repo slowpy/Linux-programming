@@ -20,13 +20,11 @@ case "$1" in
 	fi ;;
 	install)
 	cd ./build
-	./drv_callee.sh install
 	./drv_caller.sh install
 	cd .. ;;
 	uninstall)
 	cd ./build
 	./drv_caller.sh uninstall
-	./drv_callee.sh uninstall
 	cd .. ;;
 	test)
 	cd ./build

@@ -19,6 +19,11 @@
 #define MAJOR_NUM 100
 #define MODULE_NAME "drv_caller"
 #define DEVICE_FILE "/dev/drv_caller"
+/*
+typedef struct _app_info{
+    pid_t pid;
+}app_info;
+*/
 
 /* 
  * Set the message of the device driver 
