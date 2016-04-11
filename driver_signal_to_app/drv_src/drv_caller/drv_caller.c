@@ -3,6 +3,7 @@
 #include <linux/module.h>
 #include <linux/fs.h>
 #include <asm/uaccess.h>
+#include <linux/sched.h>
 #include "chardev.h"
 
 MODULE_LICENSE("Dual BSD/GPL");
@@ -22,7 +23,7 @@ static int drv_caller_close(struct inode *inode, struct file *filp) {
 static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
     
     printk("<1>drv_caller: ioctl\n");
-    
+    struct task_struct *p = NULL;    
     int size=sizeof(app_info);
     app_info* pData=(app_info*)kmalloc(size,GFP_KERNEL);
     if (!pData){
@@ -37,6 +38,15 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
 		printk("drv_caller: enter IOCTL_SET_MSG\n");
 		copy_from_user(pData,(app_info*)ioctl_param,size);
 		printk("drv_caller:app pid =%d\n",pData->pid);
+                /*
+		p = find_task_by_vpid(pData->pid);
+		if (NULL == p) {
+		    printk("drv_caller: no registered process to notify\n");
+		}
+		else{
+		    send_sig(SIGUSR1, p, 0);
+		}
+                */
 		break;
 
 	case IOCTL_GET_MSG:
