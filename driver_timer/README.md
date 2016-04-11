@@ -18,6 +18,9 @@ sudo apt-get install linux-headers-$(uname -r)
 #Code Description
 1. setup timer to call callback function: in the code ./driver_timer/drv_src/drv_timer/drv_timer.c
 <pre>
+...
+#include < linux/timer.h >
+...
 void my_timer_callback( unsigned long data )
 {
 ...
@@ -49,7 +52,7 @@ static int drv_timer_init(void)
 }
 </pre>
 
-3. delete timer:
+3. delete timer: in the code ./driver_timer/drv_src/drv_timer/drv_timer.c
 <pre>
 static void drv_timer_exit(void) {
 ...
