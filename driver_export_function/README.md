@@ -1,6 +1,20 @@
 #Driver Export function Sample code
 This sampe demo the driver how to export function and the driver how to use the exported function.
 
+# How to setup build code environment
+1. install build code tools
+<pre>
+sudo apt-get install build-essential
+</pre>
+2. check wehether kernel header files exist.
+<pre>
+ls /lib/modules/$(uname -r)/build
+</pre>
+3. if kernel header files doesn't exist, try to install them.
+<pre>
+sudo apt-get install linux-headers-$(uname -r)
+</pre>
+
 #Code Description
 1. the driver `drv_callee.ko` export function `export_hello()`: in the code ./driver_export_function/drv_src/drv_callee/drv_callee.c
 <pre>
