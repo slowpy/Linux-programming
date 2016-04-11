@@ -1,6 +1,20 @@
 #Small Template Sample code
 This is a sample to demo how to bulid app, library and driver by Makefile.
 
+# How to setup build code environment
+1. install build code tools
+<pre>
+sudo apt-get install build-essential
+</pre>
+2. check wehether kernel header files exist.
+<pre>
+ls /lib/modules/$(uname -r)/build
+</pre>
+3. if kernel header files doesn't exist, try to install them.
+<pre>
+sudo apt-get install linux-headers-$(uname -r)
+</pre>
+
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
