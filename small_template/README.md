@@ -31,6 +31,6 @@ drv_hello: exit
 </pre>
 
 6. remove all build result
-<pre>$ make clean</pre> 
+<pre>$ mk.sh clean</pre> 
 
 
