@@ -20,11 +20,11 @@ case "$1" in
 	fi ;;
 	install)
 	cd ./build
-	./drv_hello.sh install
+	./drv_timer.sh install
 	cd .. ;;
 	uninstall)
 	cd ./build
-	./drv_hello.sh uninstall
+	./drv_timer.sh uninstall
 	cd .. ;;
 	test)
 	cd ./build
