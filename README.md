@@ -15,6 +15,7 @@
 
 ##Driver sample code
 * [driver_hello](https://github.com/ivan0124/Linux-programming/tree/master/driver_hello)
+* [driver_timer](https://github.com/ivan0124/Linux-programming/tree/master/driver_timer)
 * [driver_ioctl_demo](https://github.com/ivan0124/Linux-programming/tree/master/driver_ioctl_demo)
 * [driver_export_function](https://github.com/ivan0124/Linux-programming/tree/master/driver_export_function)
 
