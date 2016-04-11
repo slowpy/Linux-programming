@@ -7,6 +7,7 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+static struct timer_list my_timer;
 
 static int drv_caller_open(struct inode *inode, struct file *filp) {
     printk("<1>drv_caller: open\n");
@@ -61,6 +62,11 @@ static ssize_t drv_caller_write(struct file *filp, const char *buf, size_t size,
     return size;
 }
 
+void my_timer_callback( unsigned long data )
+{
+    printk("<1>drv_caller: send signal to app\n");
+}
+
 static struct file_operations caller_fops = {
     .open = drv_caller_open,
     .release = drv_caller_close,
@@ -80,6 +86,11 @@ static int drv_caller_init(void) {
         printk("<1>driver_caller: Failed to register character device\n");
         return result;
     }
+
+    /* setup your timer to call my_timer_callback */
+    setup_timer(&my_timer, my_timer_callback, 0);
+    /* setup timer interval to 1000 msecs */
+    mod_timer(&my_timer, jiffies + msecs_to_jiffies(1000));
     return 0;
 }
 
