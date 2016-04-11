@@ -55,9 +55,10 @@ ioctl(file_desc, IOCTL_SET_MSG, message);
 <pre>$ mk.sh build</pre>
 2. check `build` directory and find out build result 
 <pre>
-app_a - application
+app_a - application which set ioctl to drv_caller.ko 
 drv_callee.sh, drv_caller.sh - script for install and uninstall driver
-drv_callee.ko, drv_caller.ko - driver
+drv_callee.ko - driver which export function 'export_hello()' 
+drv_caller.ko - driver which calling exported function 'export_hello()'
 </pre>
 3. install driver drv_callee.ko and drv_caller.ko
 <pre>
