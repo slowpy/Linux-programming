@@ -89,6 +89,6 @@ drv_timer: exit
 </pre>
 
 5. remove all build result
-<pre>$ make clean</pre> 
+<pre>$ mk.sh clean</pre> 
 
 
