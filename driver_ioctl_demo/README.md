@@ -1,6 +1,21 @@
 # Driver Ioctl Sample
 This is a driver sample code to demo how to add and call driver ioctl: (test on Ubuntu 10.04)
 
+# How to setup build code environment
+1. install build code tools
+<pre>
+sudo apt-get install build-essential
+</pre>
+2. check wehether kernel header files exist.
+<pre>
+ls /lib/modules/$(uname -r)/build
+</pre>
+3. if kernel header files doesn't exist, try to install them.
+<pre>
+sudo apt-get install linux-headers-$(uname -r)
+</pre>
+
+
 # Code Description
 1.register ioctl function in the driver: check the code in the ./driver_ioctl_demo/hello.c
 <pre>
