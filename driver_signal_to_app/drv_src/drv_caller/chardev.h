@@ -9,7 +9,7 @@
 #ifndef CHARDEV_H
 #define CHARDEV_H
 
-#include <linux/ioctl.h>
+#include <linux/ioctl.h>	
 
 /* 
  * The major device number. We can't rely on dynamic 
@@ -19,11 +19,11 @@
 #define MAJOR_NUM 100
 #define MODULE_NAME "drv_caller"
 #define DEVICE_FILE "/dev/drv_caller"
-/*
+
 typedef struct _app_info{
-    pid_t pid;
+    int pid;
 }app_info;
-*/
+
 
 /* 
  * Set the message of the device driver 

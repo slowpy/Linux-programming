@@ -6,15 +6,20 @@
 #include <unistd.h>		/* exit */
 #include <sys/ioctl.h>		/* ioctl */
 
+
 /* 
  * Functions for the ioctl calls 
  */
 
-ioctl_set_msg(int file_desc, char *message)
+ioctl_set_msg(int file_desc)
 {
 	int ret_val;
-
-	ret_val = ioctl(file_desc, IOCTL_SET_MSG, message);
+        app_info app_a_info;
+         
+        app_a_info.pid=getpid();
+        printf("pid:%d\n", app_a_info.pid);
+        
+	ret_val = ioctl(file_desc, IOCTL_SET_MSG, &app_a_info);
 
 	if (ret_val < 0) {
 		printf("ioctl_set_msg() failed:%d\n", ret_val);
@@ -29,7 +34,6 @@ ioctl_set_msg(int file_desc, char *message)
 main()
 {
 	int file_desc, ret_val;
-	char *msg = "Message passed by ioctl\n";
         char device_file[256]={0};  
        
         get_shell_cmd_result("cat ../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
@@ -40,7 +44,7 @@ main()
 		exit(-1);
 	}
 
-	ioctl_set_msg(file_desc, msg);
+	ioctl_set_msg(file_desc);
 
 	close(file_desc);
 }
