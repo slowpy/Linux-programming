@@ -10,7 +10,7 @@ sudo apt-get install build-essential
 <pre>
 ls /lib/modules/$(uname -r)/build
 </pre>
-2. if kernel header files doesn't exist, try to install them.
+3. if kernel header files doesn't exist, try to install them.
 <pre>
 sudo apt-get install linux-headers-$(uname -r)
 </pre>
