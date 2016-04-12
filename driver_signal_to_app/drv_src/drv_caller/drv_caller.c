@@ -82,7 +82,7 @@ void my_timer_callback( unsigned long data )
 static struct file_operations caller_fops = {
     .open = drv_caller_open,
     .release = drv_caller_close,
-    .ioctl = drv_caller_ioctl,
+    .unlocked_ioctl = drv_caller_ioctl,
     .read = drv_caller_read,
     .write = drv_caller_write,
 };
