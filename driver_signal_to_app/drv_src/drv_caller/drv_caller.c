@@ -4,6 +4,7 @@
 #include <linux/fs.h>
 #include <asm/uaccess.h>
 #include <linux/sched.h>
+#include <linux/slab.h>
 #include "chardev.h"
 
 MODULE_LICENSE("Dual BSD/GPL");
@@ -22,10 +23,11 @@ static int drv_caller_close(struct inode *inode, struct file *filp) {
 
 static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
     
-    printk("<1>drv_caller: ioctl\n");
     struct task_struct *p = NULL;    
     int size=sizeof(app_info);
     app_info* pData=(app_info*)kmalloc(size,GFP_KERNEL);
+    
+    printk("<1>drv_caller: ioctl\n");
     if (!pData){
 	printk("hello_driver: kmalloc fail\n");
 	return -1;
