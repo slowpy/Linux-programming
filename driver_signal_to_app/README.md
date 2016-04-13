@@ -108,13 +108,9 @@ drv_caller: init
 
 4. run app_a to test
 <pre>$ mk.sh test </pre>
-type `dmesg`, you will see below logs
-<pre>
-drv_caller: ioctl
-drv_caller: enter IOCTL_SET_MSG
-drv_callee: export_hello() is called
-drv_caller: close
-</pre>
+you will see below logs
+![test result link](http://139.162.35.49/image/Linux-Programming/driver_signal_to_app_20160413.png)
+
 
 5. uninstall drivers
 <pre>
