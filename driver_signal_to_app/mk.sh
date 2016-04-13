@@ -25,11 +25,12 @@ case "$1" in
 	uninstall)
 	cd ./build
 	./drv_caller.sh uninstall
+	killall app_a
 	cd .. ;;
 	test)
 	cd ./build
         export LD_LIBRARY_PATH=$(pwd)
-	./app_a
+	./app_a&
 	cd .. ;;
 	*)
 	echo "step1:'mk.sh build' to build code."

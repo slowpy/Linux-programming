@@ -5,6 +5,7 @@
 #include <fcntl.h>		/* open */
 #include <unistd.h>		/* exit */
 #include <sys/ioctl.h>		/* ioctl */
+#include <signal.h>
 
 
 /* 
@@ -27,14 +28,20 @@ ioctl_set_msg(int file_desc)
 	}
 }
 
-
+void sigusr1_handler(int signo)
+{
+    printf("sigusr1_handler triggered.\n");
+}
 /* 
  * Main - Call the ioctl functions 
  */
 main()
 {
+
 	int file_desc, ret_val;
-        char device_file[256]={0};  
+        char device_file[256]={0};
+
+        signal(SIGUSR1, sigusr1_handler);  
        
         get_shell_cmd_result("cat ../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
         printf("device file = %s\n",device_file);
@@ -47,4 +54,12 @@ main()
 	ioctl_set_msg(file_desc);
 
 	close(file_desc);
+        
+        int count=0;
+        while(1){
+	    pause();
+	    printf("app_a:receive driver signal(count=%d)\n",count);
+            count++;
+        }
+
 }
