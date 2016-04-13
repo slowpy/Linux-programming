@@ -71,6 +71,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
 		g_pid=(int)(pData->pid);
 		printk("<1>drv_caller:set app pid =%d\n",g_pid);
                 
+                g_count=0; 
 		setup_timer(&my_timer, my_timer_callback, 0);
                 mod_timer(&my_timer, jiffies + msecs_to_jiffies(1000));
                 printk("<1>setup_timer, trigger in 10 second\n");

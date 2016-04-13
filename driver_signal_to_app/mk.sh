@@ -30,6 +30,7 @@ case "$1" in
 	test)
 	cd ./build
         export LD_LIBRARY_PATH=$(pwd)
+	killall app_a
 	./app_a&
 	cd .. ;;
 	*)
