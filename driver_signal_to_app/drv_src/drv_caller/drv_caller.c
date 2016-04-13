@@ -5,6 +5,7 @@
 #include <asm/uaccess.h>
 #include <linux/sched.h>
 #include <linux/delay.h>
+#include <asm/siginfo.h>//siginfo
 #include "chardev.h"
 
 MODULE_LICENSE("Dual BSD/GPL");
@@ -15,8 +16,9 @@ static struct timer_list my_timer;
 
 void my_timer_callback( unsigned long data )
 {
-
+    int ret=0;
     struct task_struct *p = NULL;    
+    struct siginfo info;
     
     printk("<1>drv_caller: current pid=%d\n",g_pid);
     if(g_pid != 0){
@@ -26,7 +28,17 @@ void my_timer_callback( unsigned long data )
         }
         else{
             printk("<1>drv_caller: send signal to app(pid=%d)\n",g_pid);
-            send_sig(SIGUSR1, p, 0);
+	    /* prepare the signal */
+	    memset(&info, 0, sizeof(struct siginfo));
+	    info.si_signo = SIG_TEST;
+	    info.si_code = SI_QUEUE;
+	    /* real time signals may have 32 bits of data. */
+	    info.si_int = 7823;
+	    /* send the signal */
+	    ret = send_sig_info(SIG_TEST, &info, p);    //send the signal
+	    if (ret < 0) {
+		printk("drv_caller:error sending signal\n");
+	    }
         }
     }
 
@@ -50,7 +62,6 @@ static int drv_caller_close(struct inode *inode, struct file *filp) {
 
 static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
     
-    struct task_struct *p = NULL;    
     int size=sizeof(app_info);
     app_info* pData=(app_info*)kmalloc(size,GFP_KERNEL);
     

@@ -19,6 +19,7 @@
 #define MAJOR_NUM 100
 #define MODULE_NAME "drv_caller"
 #define DEVICE_FILE "/dev/drv_caller"
+#define SIG_TEST 45 // we choose 45 as our signal number (real-time signals are in the range of 33 to 64)
 
 typedef struct _app_info{
     int pid;

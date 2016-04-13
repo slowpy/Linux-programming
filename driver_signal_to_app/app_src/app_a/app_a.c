@@ -28,10 +28,11 @@ ioctl_set_msg(int file_desc)
 	}
 }
 
-void sigusr1_handler(int signo)
+void receiveData(int n, siginfo_t *info, void *unused)
 {
-    log("sigusr1_handler triggered.\n");
+	log("received value %d\n", info->si_int);
 }
+
 /* 
  * Main - Call the ioctl functions 
  */
@@ -41,8 +42,11 @@ main()
 	int file_desc, ret_val;
         char device_file[256]={0};
 
-        signal(SIGUSR1, sigusr1_handler);  
-       
+	struct sigaction sig;
+	sig.sa_sigaction = receiveData;
+	sig.sa_flags = SA_SIGINFO;
+	sigaction(SIG_TEST, &sig, NULL);
+ 
         get_shell_cmd_result("cat ../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
         log("device file = %s\n",device_file);
 	file_desc = open(device_file, 0);
@@ -58,7 +62,6 @@ main()
         int count=0;
         while(1){
 	    pause();
-	    log("app_a:receive driver signal(count=%d)\n",count);
             count++;
         }
 
