@@ -6,7 +6,7 @@
 #include <unistd.h>		/* exit */
 #include <sys/ioctl.h>		/* ioctl */
 #include <signal.h>
-
+#include "lib_common.h"
 
 /* 
  * Functions for the ioctl calls 
@@ -18,19 +18,19 @@ ioctl_set_msg(int file_desc)
         app_info app_a_info;
          
         app_a_info.pid=getpid();
-        printf("pid:%d\n", app_a_info.pid);
+        log("pid:%d\n", app_a_info.pid);
         
 	ret_val = ioctl(file_desc, IOCTL_SET_MSG, &app_a_info);
 
 	if (ret_val < 0) {
-		printf("ioctl_set_msg() failed:%d\n", ret_val);
+		log("ioctl_set_msg() failed:%d\n", ret_val);
 		exit(-1);
 	}
 }
 
 void sigusr1_handler(int signo)
 {
-    printf("sigusr1_handler triggered.\n");
+    log("sigusr1_handler triggered.\n");
 }
 /* 
  * Main - Call the ioctl functions 
@@ -44,10 +44,10 @@ main()
         signal(SIGUSR1, sigusr1_handler);  
        
         get_shell_cmd_result("cat ../drv_src/drv_caller/chardev.h | grep '#define DEVICE_FILE' | cut -d '\"' -f 2", device_file, sizeof(device_file));
-        printf("device file = %s\n",device_file);
+        log("device file = %s\n",device_file);
 	file_desc = open(device_file, 0);
 	if (file_desc < 0) {
-		printf("Can't open device file: %s\n", MODULE_NAME);
+		log("Can't open device file: %s\n", MODULE_NAME);
 		exit(-1);
 	}
 
@@ -58,7 +58,7 @@ main()
         int count=0;
         while(1){
 	    pause();
-	    printf("app_a:receive driver signal(count=%d)\n",count);
+	    log("app_a:receive driver signal(count=%d)\n",count);
             count++;
         }
 
