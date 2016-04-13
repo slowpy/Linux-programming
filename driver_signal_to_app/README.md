@@ -50,7 +50,8 @@ void my_timer_callback( unsigned long data )
 	    ret = send_sig_info(SIG_TEST, &info, p);    //send the signal
 ...
 </pre>
-4.`app_a` register handler to receive `drv_caller.ko` signal:in the code ./driver_signal_to_app/app_src/app_a/app_a.c
+
+4. `app_a` register handler to receive `drv_caller.ko` signal:in the code ./driver_signal_to_app/app_src/app_a/app_a.c
 <pre>
 main(){
 ...
@@ -74,6 +75,7 @@ ioctl_set_msg(int file_desc)
 	    ret_val = ioctl(file_desc, IOCTL_SET_MSG, &app_a_info);
 ...
 </pre>
+
 6. `app_a` use `pasue()` to wait driver signal:in the code ./driver_signal_to_app/app_src/app_a/app_a.c
 <pre>
 main(){
