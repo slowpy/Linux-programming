@@ -1,5 +1,5 @@
 #Driver signal to app sample code
-This sampe demo the driver how to signal information to user sapce app.
+This sampe demo how the driver signal information to user space app.
 
 # How to setup build code environment
 1. install build code tools
