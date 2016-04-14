@@ -39,7 +39,7 @@ drv_proc_rw: init
 <pre>$ mk.sh test </pre>
 you see test logs like below:
 
-![result link](http://139.162.35.49/image/Linux-Programming/driver_proc_rw_20160414_1.png)
+   ![result link](http://139.162.35.49/image/Linux-Programming/driver_proc_rw_20160414_1.png)
 
 5. uninstall driver
 <pre>$ mk.sh uninstall</pre>
