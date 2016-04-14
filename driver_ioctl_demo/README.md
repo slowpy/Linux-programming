@@ -20,7 +20,9 @@ sudo apt-get install linux-headers-$(uname -r)
 
 
 # Code Description
-1.register ioctl function in the driver: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
+1.major
+
+2.register ioctl function in the driver: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static struct file_operations hello_fops = {
     .open = hello_open,
@@ -39,7 +41,7 @@ static int hello_init(void) {
     result = register_chrdev(MAJOR_NUM, MODULE_NAME, &hello_fops);
 </pre>
 
-2.implement ioctl function: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
+3.implement ioctl function: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
   
@@ -65,7 +67,18 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
     return 0;
 }
 </pre>
-3.`ioctl` do ioctl to driver `hello.ko`: [ioctl.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/ioctl.c)
+
+4.install driver and create driver device file(`/dev/hello`) for user space app to access: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+<pre>
+...
+ "build" )
+        sudo insmod $MODULE
+	    sudo mknod $DEVICE_FILE c $DRV_MAJOR_NUM 0
+        sudo chmod 666 $DEVICE_FILE ;;
+...        
+</pre>
+
+5.`ioctl` open device file (`/dev/hello`) of the driver and set ioctl command to the driver.: [ioctl.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/ioctl.c)
 <pre>
 ioctl_get_nth_byte(int file_desc)
 {
@@ -88,6 +101,14 @@ main()
 	ioctl_get_nth_byte(file_desc);
 </pre>
 
+6.uninstall driver and delete driver device file: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+<pre>
+...
+ "clean" )
+        sudo rmmod $MODULE_NAME
+        sudo rm -rf $DEVICE_FILE ;;
+...        
+</pre>
 
 # How To Test 
 1.build code and install driver
