@@ -21,6 +21,7 @@ case "$1" in
 	install)
 	cd ./build
 	./drv_proc_rw.sh install
+	sudo chmod a+w /proc/proc_rw_type
 	cd .. ;;
 	uninstall)
 	cd ./build
