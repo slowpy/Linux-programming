@@ -75,7 +75,7 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
 }
 </pre>
 
-4.install driver and create driver `device file` for user space app to access: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+4.install driver by `insmod` `module name` and create driver `device file` for user space app to access: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
 <pre>
 ...
  "build" )
@@ -108,7 +108,7 @@ main()
 	ioctl_get_nth_byte(file_desc);
 </pre>
 
-6.uninstall driver and delete driver `device file`: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+6.uninstall driver by `rmmod` `module name`and delete driver `device file`: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
 <pre>
 ...
  "clean" )
