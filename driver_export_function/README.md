@@ -30,7 +30,7 @@ int export_hello(void) {
 EXPORT_SYMBOL(export_hello);
 </pre>
 
-2. copy `drv_callee` Modules.symvers to the `drv_caller`: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/Makefile)
+2. copy `drv_callee` Modules.symvers to the `drv_caller` directory: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/Makefile)
 <pre>
 ...
 @cp -rf Module.symvers ../drv_caller/
