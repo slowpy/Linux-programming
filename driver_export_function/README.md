@@ -63,7 +63,7 @@ drv_callee.sh, drv_caller.sh - script for install and uninstall driver
 drv_callee.ko - driver which export function 'export_hello()' 
 drv_caller.ko - driver which calling exported function 'export_hello()'
 </pre>
-3. install driver drv_callee.ko and drv_caller.ko
+3. install driver drv_`callee.ko` and `drv_caller.ko`
 <pre>
 $ mk.sh install
 </pre>
