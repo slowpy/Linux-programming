@@ -15,7 +15,7 @@ static int proc_rw_read_proc (char *page, char **start, off_t off, int count,
 	printk("<1>drv_proc_rw: proc_rw_read_proc() enter\n");
 
 	int len=0;
-	len = sprintf(page,"<1>drv_proc_rw: proc_rw_type=%s\n", g_proc_rw_type);
+	len = sprintf(page,"proc_rw_type=%s\n", g_proc_rw_type);
 	return len;
 
 }
