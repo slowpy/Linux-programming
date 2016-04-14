@@ -19,7 +19,7 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 #Code Description
-1. the driver `drv_callee.ko` export function `export_hello()`: [drv_callee.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/drv_callee.c)
+1. the driver `drv_callee.ko` export function by `EXPORT_SYMBOL`: [drv_callee.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/drv_callee.c)
 <pre>
 ...
 int export_hello(void) {
