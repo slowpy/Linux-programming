@@ -18,6 +18,58 @@ you will see result like below:
 sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
+#Code Description
+1. include header files: [drv_proc_rw.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_proc_rw/drv_src/drv_proc_rw/drv_proc_rw.c)
+<pre>
+...
+#include <linux/proc_fs.h>
+#include <linux/uaccess.h> //for copy_from_user(): in the code
+...
+</pre>
+
+2. create `/proc/proc_rw_type` : [drv_proc_rw.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_proc_rw/drv_src/drv_proc_rw/drv_proc_rw.c)
+<pre>
+static int drv_proc_rw_init(void) {
+...
+        if ((proc_rw = create_proc_entry( "proc_rw_type", 0, NULL ))){
+            proc_rw->read_proc = proc_rw_read_proc;
+            proc_rw->write_proc = proc_rw_write_proc;
+        }
+...
+}
+</pre>
+
+3. remove `/proc/proc_rw_type`: [drv_proc_rw.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_proc_rw/drv_src/drv_proc_rw/drv_proc_rw.c)
+<pre>
+static void drv_proc_rw_exit(void) {
+...
+        remove_proc_entry("proc_rw_type", NULL);
+...
+}
+</pre>
+
+4. implement `/proc/proc_rw_type` read function, variable `page` is buffer from user space: [drv_proc_rw.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_proc_rw/drv_src/drv_proc_rw/drv_proc_rw.c)
+<pre>
+static int proc_rw_read_proc (char *page, char **start, off_t off, int count,
+			  int *eof, void *data_unused)
+{
+...
+	    len = sprintf(page,"proc_rw_type=%s\n", g_proc_rw_type);
+...
+}
+</pre>
+
+5. implement `/proc/proc_rw_type` write function, copy user space `buffer` value to kernel space `g_proc_rw_type`: [drv_proc_rw.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_proc_rw/drv_src/drv_proc_rw/drv_proc_rw.c)
+<pre>
+static int proc_rw_write_proc(struct file *file, const char *buffer, unsigned long count, void *data)
+{
+...
+        if (copy_from_user(g_proc_rw_type, buffer, len))
+        {
+...
+}
+</pre>
+
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
