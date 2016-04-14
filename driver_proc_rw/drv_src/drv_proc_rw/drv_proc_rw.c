@@ -2,61 +2,42 @@
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/proc_fs.h>
+#include <linux/uaccess.h> //for copy_from_user()
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+char g_proc_rw_type[256]={0};
 static struct proc_dir_entry *proc_rw;
 
 static int proc_rw_read_proc (char *page, char **start, off_t off, int count,
 			  int *eof, void *data_unused)
 {
 	printk("<1>drv_proc_rw: proc_rw_read_proc() enter\n");
-/*
+
 	int len=0;
-	len = sprintf(page, "[pbi] nat type = %d\n", g_pesi_nat_type);
+	len = sprintf(page,"<1>drv_proc_rw: proc_rw_type=%s\n", g_proc_rw_type);
 	return len;
-*/
-        return 0;
+
 }
 
 static int proc_rw_write_proc(struct file *file, const char *buffer, unsigned long count, void *data)
 {
-	printk("<1>drv_proc_rw: proc_rw_write_proc() enter\n");
+    printk("<1>drv_proc_rw: proc_rw_write_proc() enter\n");
     
-/*
-    char buf[8]={0};
+    char buf[256]={0};
     int len=count;
 
-    if (copy_from_user(buf, buffer, len))
+    memset(g_proc_rw_type,0,sizeof(g_proc_rw_type));
+    if (copy_from_user(g_proc_rw_type, buffer, len))
     {
+        printk("<1>drv_proc_rw: copy_from_user fail\n");
         return -EFAULT;
     }	
-	buf[len] = '\0';
-	if ( buf[0] == '1'){
-		g_pesi_nat_type=1;
-		nvram_set(1,"NAT_TYPE","1");
-		nvram_commit(1);
-	}
-	
-	if ( buf[0] == '2' ){
-		g_pesi_nat_type=2;
-		nvram_set(1,"NAT_TYPE","2");
-		nvram_commit(1);
-	}
-	
-	if ( buf[0] == '3' ){
-		g_pesi_nat_type=3;
-		nvram_set(1,"NAT_TYPE","3");
-		nvram_commit(1);
-	}
-	
-	printk("[pbi] conntrack_write_proc, buf = %s(len=%d), nat type=%d\n",buf,len,g_pesi_nat_type);
-	
-	return len;
-*/
 
-    return 1;
-
+    g_proc_rw_type[len-1]=0;	
+    printk("<1>drv_proc_rw: input buffer = %s(len=%d), set proc_rw_type OK.\n",g_proc_rw_type, strlen(g_proc_rw_type));
+	
+    return len;
 }
 
 static int drv_proc_rw_init(void) {

@@ -28,10 +28,9 @@ case "$1" in
 	./drv_proc_rw.sh uninstall
 	cd .. ;;
 	test)
-	cd ./build
-	export LD_LIBRARY_PATH=$(pwd)
-	./app_a
-	cd .. ;;
+	echo "echo 8 > /proc/proc_rw_type"
+	echo 8 > /proc/proc_rw_type
+	cat /proc/proc_rw_type;;
 	*)
 	echo "step1: 'mk.sh build' to build code. 'mk.sh clean to clean build result'"
 	echo "step2: 'mk.sh install' to install the driver. type 'demsg' to see logs"
