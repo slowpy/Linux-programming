@@ -37,8 +37,9 @@ drv_proc_rw: init
 
 4. read/write `/proc/proc_rw_type` by calling `mk.sh test`.
 <pre>$ mk.sh test </pre>
-you kernel logs like below:
+you see test logs like below:
 
+![result link](http://139.162.35.49/image/Linux-Programming/driver_proc_rw_20160414_1.png)
 
 5. uninstall driver
 <pre>$ mk.sh uninstall</pre>
