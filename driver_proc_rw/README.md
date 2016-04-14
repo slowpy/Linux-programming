@@ -1,5 +1,5 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#Driver /proc read/write Sample code
+This sample demo how to implement /proc read/write function in the driver.
 
 # How to setup build code environment
 1. install build code tools
@@ -21,27 +21,27 @@ sudo apt-get install linux-headers-$(uname -r)
 
 2. check `build` directory and find out build result as below: 
 <pre>
-app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
+drv_proc_rw.ko - driver
+drv_proc_rw.sh - script to install drv_proc_rw.ko driver
 </pre>
 
 3. install driver.
 <pre>$ mk.sh install</pre>
 type `dmesg` to see below logs
 <pre>
-drv_hello: init
+drv_proc_rw: init
 </pre>
 
-4. run app_a to test. you will see some logs in the screen.
+4. read/write `/proc/proc_rw_type` by calling `mk.sh test`.
 <pre>$ mk.sh test </pre>
+you kernel logs like below:
 
 
 5. uninstall driver
 <pre>$ mk.sh uninstall</pre>
 type `dmesg` to see below logs
 <pre>
-drv_hello: exit
+drv_proc_rw: exit
 </pre>
 
 6. remove all build result
