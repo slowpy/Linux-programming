@@ -20,9 +20,16 @@ sudo apt-get install linux-headers-$(uname -r)
 
 
 # Code Description
-1.major
+1.define driver `major number`, `device file` and `module name`: [chardev.h](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/chardev.h)
+<pre>
+...
+#define MAJOR_NUM 100
+#define MODULE_NAME "hello"
+#define DEVICE_FILE "/dev/hello"
+...
+</pre>
 
-2.register ioctl function in the driver: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
+2.register `ioctl` function and `major number` in the driver: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static struct file_operations hello_fops = {
     .open = hello_open,
@@ -41,7 +48,7 @@ static int hello_init(void) {
     result = register_chrdev(MAJOR_NUM, MODULE_NAME, &hello_fops);
 </pre>
 
-3.implement ioctl function: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
+3.implement `ioctl` function: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
   
@@ -68,7 +75,7 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
 }
 </pre>
 
-4.install driver and create driver device file(`/dev/hello`) for user space app to access: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+4.install driver and create driver `device file` for user space app to access: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
 <pre>
 ...
  "build" )
@@ -78,7 +85,7 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
 ...        
 </pre>
 
-5.`ioctl` open device file (`/dev/hello`) of the driver and set ioctl command to the driver.: [ioctl.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/ioctl.c)
+5.use space app open `device file`of the driver and set `ioctl` command to the driver.: [ioctl.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/ioctl.c)
 <pre>
 ioctl_get_nth_byte(int file_desc)
 {
@@ -101,7 +108,7 @@ main()
 	ioctl_get_nth_byte(file_desc);
 </pre>
 
-6.uninstall driver and delete driver device file: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
+6.uninstall driver and delete driver `device file`: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/mk.sh)
 <pre>
 ...
  "clean" )
