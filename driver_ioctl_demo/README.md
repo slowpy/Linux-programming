@@ -20,7 +20,7 @@ sudo apt-get install linux-headers-$(uname -r)
 
 
 # Code Description
-1.register ioctl function in the driver: check the code in the ./driver_ioctl_demo/hello.c
+1.register ioctl function in the driver: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static struct file_operations hello_fops = {
     .open = hello_open,
@@ -39,7 +39,7 @@ static int hello_init(void) {
     result = register_chrdev(MAJOR_NUM, MODULE_NAME, &hello_fops);
 </pre>
 
-2.implement ioctl function: check the code in the ./driver_ioctl_demo/hello.c
+2.implement ioctl function: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/hello.c)
 <pre>
 static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
   
@@ -65,7 +65,7 @@ static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioct
     return 0;
 }
 </pre>
-3.calling ioctl: check the code int the ./driver_ioctl_demo/ioctl.c
+3.`ioctl` do ioctl to driver `hello.ko`: [ioctl.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_ioctl_demo/ioctl.c)
 <pre>
 ioctl_get_nth_byte(int file_desc)
 {
