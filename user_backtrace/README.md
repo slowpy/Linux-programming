@@ -2,7 +2,7 @@
 This sample demo how to generate and analyze backtrace.
 
 #Code Description
-1. register function for segmentation fault signal : int the code ./user_backtrace/app_src/app_a/app_a.c
+1. register function for segmentation fault signal : [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_backtrace/app_src/app_a/app_a.c)
 <pre>
 ...
 void dump(int signo)
@@ -16,7 +16,7 @@ int main(){
 }
 </pre>
 
-2. print application memory mapping: in the code ./user_backtrace/app_src/app_a/app_a.c
+2. print application memory mapping: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_backtrace/app_src/app_a/app_a.c)
 <pre>
 void dump(int signo)
 {
@@ -26,7 +26,7 @@ void dump(int signo)
 ...
 </pre>
 
-3. calling function to print call stack: in the code ./user_backtrace/app_src/app_a/app_a.c
+3. calling function to print call stack: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_backtrace/app_src/app_a/app_a.c)
 <pre>
 void dump(int signo)
 {
@@ -42,14 +42,14 @@ void dump(int signo)
 }
 </pre>
 
-4. let objdump can generate C source code: in the code ./user_backtrace/app_src/app_a/Makefile
+4. let objdump can generate C source code: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/user_backtrace/app_src/app_a/Makefile)
 <pre>
 ...
 CFLAGS :=-g
 ...
 </pre>
 
-5. generate `app_a.s` file: in the code /user_backtrace/mk.sh
+5. generate `app_a.s` file: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/user_backtrace/mk.sh)
 <pre>
 ...
 objdump -S ./app_a > app_a.s
