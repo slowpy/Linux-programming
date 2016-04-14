@@ -19,7 +19,7 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 #Code Description
-1. setup timer to call callback function: in the code ./driver_timer/drv_src/drv_timer/drv_timer.c
+1. setup timer to call callback function: [drv_timer.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_timer/drv_src/drv_timer/drv_timer.c)
 <pre>
 ...
 #include < linux/timer.h >
@@ -39,7 +39,7 @@ static int drv_timer_init(void)
 </pre>
 
 
-2. set timer interval to `1000` ms: in the code ./driver_timer/drv_src/drv_timer/drv_timer.c
+2. set timer interval to `1000` ms: [drv_timer.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_timer/drv_src/drv_timer/drv_timer.c)
 <pre>
 void my_timer_callback( unsigned long data )
 {
@@ -55,7 +55,7 @@ static int drv_timer_init(void)
 }
 </pre>
 
-3. delete timer: in the code ./driver_timer/drv_src/drv_timer/drv_timer.c
+3. delete timer: [drv_timer.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_timer/drv_src/drv_timer/drv_timer.c)
 <pre>
 static void drv_timer_exit(void) {
 ...
