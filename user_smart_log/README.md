@@ -2,7 +2,7 @@
 This sample demo how to create and using smart log which auto adding application name as log prefix.
 
 #Code Description
-1. add print_app_name function in the code /user_smart_log/lib_src/lib_log/lib_log.c
+1. add print_app_name function: [lib_log.c](https://github.com/ivan0124/Linux-programming/blob/master/user_smart_log/lib_src/lib_log/lib_log.c)
 <pre>
 void print_app_name() {
      size_t linknamelen;
@@ -15,7 +15,7 @@ void print_app_name() {
      printf("[LOG][%s]", cmdline);
 }
 </pre>
-2. add log macro in the code user_smart_log/lib_src/lib_log/lib_log.h
+2. add log macro: [lib_log.h](https://github.com/ivan0124/Linux-programming/blob/master/user_smart_log/lib_src/lib_log/lib_log.h)
 <pre>
   void print_app_name();
 
@@ -28,7 +28,7 @@ CFLAGS	:=-g -I../../lib_src/lib_log/
 ...
 $(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) $(LDLIBS) -o $(EXE)
 </pre>
-4. include lib_log.h and calling log() in the code /user_smart_log/app_src/app_a/app_a.c
+4. include lib_log.h and calling log(): [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_smart_log/app_src/app_a/app_a.c)
 <pre>
   #include "lib_log.h"
 
