@@ -19,7 +19,7 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 # Code Description
-1. install driver, hello_init() is called: check the code in ./driver_hello/hello.c
+1. install driver, hello_init() is called: [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_hello/hello.c)
 <pre>
 static int hello_init(void) {
     printk("<1>hello_driver: init\n");
@@ -28,7 +28,7 @@ static int hello_init(void) {
 ...
 module_init(hello_init);
 </pre>
-2.  uninstall driver, hello_exit() is called:  check the code in ./driver_hello/hello.c
+2.  uninstall driver, hello_exit() is called:  [hello.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_hello/hello.c)
 <pre>
 static void hello_exit(void) {
     printk("<1>hello_driver: exit\n");
