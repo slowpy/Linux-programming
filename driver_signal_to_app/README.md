@@ -19,7 +19,7 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 #Code Description
-1. the driver `drv_caller.ko` has ioctl for `app_a` to set app_a process id: in the code ./driver_signal_to_app/drv_src/drv_caller/drv_caller.c
+1. the driver `drv_caller.ko` has ioctl for `app_a` to set app_a process id: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
 <pre>
 static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
 ...
@@ -32,7 +32,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
 } 
 </pre>
 
-2.  the driver `drv_caller.ko` has ioctl for `app_a` to setup timer to send signal: in the code: in the code ./driver_signal_to_app/drv_src/drv_caller/drv_caller.c
+2.  the driver `drv_caller.ko` has ioctl for `app_a` to setup timer to send signal: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
 <pre>
 ...
     switch (ioctl_num) {
@@ -43,7 +43,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
 ...
 </pre>
 
-3. the driver `drv_caller.ko` send signal to `app_a` pid: in the code ./driver_signal_to_app/drv_src/drv_caller/drv_caller.c
+3. the driver `drv_caller.ko` send signal to `app_a` pid: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
 <pre>
 void my_timer_callback( unsigned long data )
 {
@@ -54,7 +54,7 @@ void my_timer_callback( unsigned long data )
 ...
 </pre>
 
-4. `app_a` register handler to receive `drv_caller.ko` signal:in the code ./driver_signal_to_app/app_src/app_a/app_a.c
+4. `app_a` register handler to receive `drv_caller.ko` signal: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
 <pre>
 main(){
 ...
@@ -65,7 +65,7 @@ main(){
 ...
 </pre>
 
-5. `app_a` set ioctl to `drv_caller.ko` to set pid and trigger timer: in the code ./driver_signal_to_app/app_src/app_a/app_a.c
+5. `app_a` set ioctl to `drv_caller.ko` to set pid and trigger timer: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
 <pre>
 ioctl_set_msg(int file_desc)
 {
@@ -79,7 +79,7 @@ ioctl_set_msg(int file_desc)
 ...
 </pre>
 
-6. `app_a` use `pasue()` to wait driver signal:in the code ./driver_signal_to_app/app_src/app_a/app_a.c
+6. `app_a` use `pasue()` to wait driver signal: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
 <pre>
 main(){
 ...
