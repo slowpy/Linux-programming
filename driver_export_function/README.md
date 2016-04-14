@@ -19,7 +19,7 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 #Code Description
-1. the driver `drv_callee.ko` export function `export_hello()`: in the code ./driver_export_function/drv_src/drv_callee/drv_callee.c
+1. the driver `drv_callee.ko` export function `export_hello()`: [drv_callee.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/drv_callee.c)
 <pre>
 ...
 int export_hello(void) {
@@ -30,14 +30,14 @@ int export_hello(void) {
 EXPORT_SYMBOL(export_hello);
 </pre>
 
-2. copy `drv_callee` Modules.symvers to the `drv_caller`: in the code ./driver_export_function/drv_src/drv_callee/Makefile
+2. copy `drv_callee` Modules.symvers to the `drv_caller`: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_callee/Makefile)
 <pre>
 ...
 @cp -rf Module.symvers ../drv_caller/
 ...
 </pre>
 
-3. declare function `export_hello()` and calling it: in the code ./driver_export_function/drv_src/drv_caller/drv_caller.c
+3. declare function `export_hello()` and calling it: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/drv_src/drv_caller/drv_caller.c)
 <pre>
 ...
 extern int export_hello(void);
@@ -46,7 +46,7 @@ export_hello();
 ...
 </pre>
 
-4. `app_a` set ioctl to `drv_callee.ko` to trigger the test: in the code /driver_export_function/app_src/app_a/app_a.c
+4. `app_a` set ioctl to `drv_callee.ko` to trigger the test: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_export_function/app_src/app_a/app_a.c)
 <pre>
 ...
 ioctl(file_desc, IOCTL_SET_MSG, message);
