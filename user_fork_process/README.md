@@ -1,22 +1,45 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#For process Sample code
+This sample demo how to fork process.
 
-# How to setup build code environment
-1. install build code tools
-<pre>
-$ sudo apt-get install build-essential
-</pre>
-2. check wehether kernel header files exist.
-<pre>
-$ ls /lib/modules/$(uname -r)/build
-</pre>
-you will see result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/small_template_20160414.png)
+![fork flow link](http://139.162.35.49/image/Linux-Programming/user_fork_process_20160415_1.png)
 
-3. if kernel header files doesn't exist, try to install them.
+#Code Description
+1. calling `fork()` to copy process
 <pre>
-$ sudo apt-get install linux-headers-$(uname -r)
+int main(void){
+...
+    pid = fork();
+...
 </pre>
+
+2. `fork()` return pid 0 is child process (Process B): [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_fork_process/app_src/app_a/app_a.c)
+<pre>
+int main(void){
+...
+        if(pid == 0){
+            log("[child process] pid = %d,parent's pid = %d\n",getpid(),getppid());
+	        exit(99);
+    }
+...
+</pre>
+3. `fork()` return pid > 0 is parent process(Process A): [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_fork_process/app_src/app_a/app_a.c)
+<pre>
+int main(void){
+...
+        if(pid > 0){
+            log("[parent process] pid =%d ,child's pid = %d\n",getpid(),pid);
+...
+</pre>
+
+4. using `wait()` clear child `zombie` process
+<pre>
+int main(void){
+...
+        child_pid = wait(&stat_val);
+...
+</pre>
+
+
 
 #How to test
 1. build code
