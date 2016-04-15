@@ -31,7 +31,7 @@ int main(void){
 ...
 </pre>
 
-4. `Process A` using `wait()` to clear child `zombie` process: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_fork_process/app_src/app_a/app_a.c)
+4. Process A using `wait()` to clear child `zombie` process: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_fork_process/app_src/app_a/app_a.c)
 <pre>
 int main(void){
 ...
