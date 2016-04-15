@@ -2,9 +2,10 @@
 
 .c.o:
 	gcc -c $<
-	echo "$$@ =$@"
-	echo "$$< =$<"
-	echo "$$* =$*"
+	$(warning "$$@ =$@")
+	$(warning "$$< =$<")
+	$(warning "$$* =$*")
+	$(warning "$$? =$?")
 
 OBJS	=app_a.o funcA.o funcA1.o
 
@@ -14,10 +15,11 @@ OBJS	=app_a.o funcA.o funcA1.o
 #	echo "$$< =$<"
 
 app_a: $(OBJS)
-	gcc $(OBJS) -o $@
-	echo "app_a $$@=$@"
-	echo "app_a $$<=$<"
-	echo "app_a $$*=$*"
+	gcc $? -o $@
+	$(warning "app_a $$@=$@")
+	$(warning "app_a $$<=$<")
+	$(warning "app_a $$*=$*")
+	$(warning "app_a $$?=$?")
 clean:
 	rm -rf *.o
 	rm -rf app_a
