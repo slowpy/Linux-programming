@@ -1,7 +1,9 @@
 # Linux-programming
+* [small_template](https://github.com/ivan0124/Linux-programming/tree/master/small_template)
+
 ##Makefile sample code
 * [Makefile_hello](https://github.com/ivan0124/Linux-programming/tree/master/Makefile_hello)
-* [small_template](https://github.com/ivan0124/Linux-programming/tree/master/small_template)
+* [Makefile_macro](https://github.com/ivan0124/Linux-programming/tree/master/Makefile_macro)
 
 ##User space C language sample code
 * [user_daemon](https://github.com/ivan0124/Linux-programming/tree/master/user_daemon)
