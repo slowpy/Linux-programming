@@ -6,11 +6,11 @@ This sample demo how to use $@, $<, $?, $* in Makefile.
 <pre>
 ...
 .c.o:
-	gcc -c $<
-	$(warning "$$@ =$@")
-	$(warning "$$< =$<")
-	$(warning "$$* =$*")
-	$(warning "$$? =$?")
+	    gcc -c $<
+	    $(warning "$$@ =$@")
+	    $(warning "$$< =$<")
+	    $(warning "$$* =$*")
+	    $(warning "$$? =$?")
 ...
 </pre>
 
@@ -18,11 +18,11 @@ This sample demo how to use $@, $<, $?, $* in Makefile.
 <pre>
 ...
 app_a: $(OBJS)
-	gcc $? -o $@
-	$(warning "app_a $$@=$@")
-	$(warning "app_a $$<=$<")
-	$(warning "app_a $$*=$*")
-	$(warning "app_a $$?=$?")
+	    gcc $? -o $@
+	    $(warning "app_a $$@=$@")
+	    $(warning "app_a $$<=$<")
+	    $(warning "app_a $$*=$*")
+	    $(warning "app_a $$?=$?")
 ...
 </pre>
 
