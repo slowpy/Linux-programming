@@ -24,7 +24,7 @@ int main(void)
 
     if(pid == 0){
         log("[child process] pid = %d,parent's pid = %d\n",getpid(),getppid());
-	return 99;
+	exit(99);
     }
     if(pid > 0){
         log("[parent process] pid =%d ,child's pid = %d\n",getpid(),pid);
