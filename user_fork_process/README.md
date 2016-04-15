@@ -1,4 +1,4 @@
-#For process Sample code
+#fork process Sample code
 This sample demo how to fork process.
 
 ![fork flow link](http://139.162.35.49/image/Linux-Programming/user_fork_process_20160415_1.png)
@@ -31,7 +31,7 @@ int main(void){
 ...
 </pre>
 
-4. using `wait()` clear child `zombie` process
+4. using `wait()` to clear child `zombie` process: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_fork_process/app_src/app_a/app_a.c)
 <pre>
 int main(void){
 ...
@@ -48,29 +48,14 @@ int main(void){
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
 </pre>
 
-3. install driver.
-<pre>$ mk.sh install</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: init
-</pre>
-
-4. run app_a to test. you will see some logs in the screen.
+3. run app_a to test.
 <pre>$ mk.sh test </pre>
+you will see the logs like below
+![result link](http://139.162.35.49/image/Linux-Programming/user_fork_process_20160415.png)
 
-
-5. uninstall driver
-<pre>$ mk.sh uninstall</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: exit
-</pre>
-
-6. remove all build result
+4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 
