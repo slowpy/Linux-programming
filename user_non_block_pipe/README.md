@@ -2,7 +2,7 @@
 This sample demo how to create pipe and read/write it.
 
 #Code Description
-1. create pipe by using `mkfifo`, the pipe name is `/tmp/myfifo`:
+1. create pipe by using `mkfifo`, the pipe name is `/tmp/myfifo`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
 <pre>
 int main()
 {
@@ -15,7 +15,7 @@ int main()
 ...
 </pre>
 
-2. open `/tmp/myfifo` to read and on non-block mode by using parameters `O_RDONLY | O_NONBLOCK`, so we don't block on `open()`:
+2. open `/tmp/myfifo` to read and on non-block mode by using parameters `O_RDONLY | O_NONBLOCK`, so we don't block on `open()`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
 <pre>
 int main()
 {
@@ -26,7 +26,7 @@ int main()
 ...
 </pre>
 
-3. using `select` to wait pipe message come in, we will block here until message come in:
+3. using `select` to wait pipe message come in, we will block here until message come in: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
 <pre>
 int main()
 {
@@ -37,7 +37,7 @@ int main()
 ...
 </pre>
 
-4. read `/tmp/myfifo` pipe message:
+4. read `/tmp/myfifo` pipe message: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
 <pre>
 int main()
 {
