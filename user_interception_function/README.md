@@ -34,6 +34,8 @@ int main( int argc, char* argv[])
 <pre>
 app_a - application
 </pre>
+you will see logs like below:
+![result link](http://139.162.35.49/image/Linux-Programming/user_interception_function_20160417.png)
 
 3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
