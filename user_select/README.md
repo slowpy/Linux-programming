@@ -2,7 +2,7 @@
 This sample demo how to use select function.
 
 #Code Description
-1. declare `fd`, `fdset` and `nfds`
+1. declare `fd`, `fdset` and `nfds`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
     int fd=0;
@@ -11,7 +11,7 @@ This sample demo how to use select function.
 ...
 </pre>
 
-2. get file description `fd`:
+2. get file description `fd`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
     while(1){
 ...
@@ -19,7 +19,7 @@ This sample demo how to use select function.
 ...
 </pre>
 
-3. set maximum fd `nfds` for `select()`:
+3. set maximum fd `nfds` for `select()`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
         nfds=fd+1;
@@ -28,7 +28,7 @@ This sample demo how to use select function.
 ...
 </pre>
 
-4. initialize `fdset` as zero and add `fd` to `fdset`:
+4. initialize `fdset` as zero and add `fd` to `fdset`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
         FD_ZERO(&fdset);
@@ -36,14 +36,14 @@ This sample demo how to use select function.
 ...
 </pre>
 
-5. using `select()` to wait `fd` message come in(we will block here):
+5. using `select()` to wait `fd` message come in(we will block here): [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
         if ((ready_fd = select(nfds,&fdset,NULL,NULL,NULL))<0){
 ...
 </pre>
 
-6. check if `fd` has message come in, if yes, read `fd` message:
+6. check if `fd` has message come in, if yes, read `fd` message: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
         if (FD_ISSET(fd,&fdset)){
@@ -51,7 +51,7 @@ This sample demo how to use select function.
 ...
 </pre>
 
-7. close `fd` and clear `fdset`
+7. close `fd` and clear `fdset`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_select/app_src/app_a/app_a.c)
 <pre>
 ...
         close(fd);
