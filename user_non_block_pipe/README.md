@@ -37,7 +37,7 @@ int main()
 ...
 </pre>
 
-4. oepn and write 'Hi' message to `/tmp/myfifo`:
+4. open and write 'Hi' message to `/tmp/myfifo`: [app_b.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_b/app_b.c)
 <pre>
 int main()
 {
