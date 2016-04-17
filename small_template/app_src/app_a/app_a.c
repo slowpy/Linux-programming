@@ -1,10 +1,10 @@
-/*hello.c*/
+/*app_a.c*/
 #include <stdio.h>
 #include "lib_common.h"
 
 int main( int argc, char* argv[])
 {
-    log("Hello World\n"); 
+    log("\nHello World\n"); 
     testFuncA();
     testFuncA1();
     //calling function in library
