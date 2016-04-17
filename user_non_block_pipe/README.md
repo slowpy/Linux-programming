@@ -1,22 +1,53 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#Non-block pipe Sample code
+This sample demo how to create pipe and read/write it.
 
-# How to setup build code environment
-1. install build code tools
+#Code Description
+1. create pipe by using `mkfifo`, the pipe name is `/tmp/myfifo`:
 <pre>
-$ sudo apt-get install build-essential
+int main()
+{
+...
+        char * myfifo = "/tmp/myfifo";
+...
+        while(1){
+...
+            if ( mkfifo(myfifo, 0666) < 0 ){
+...
 </pre>
-2. check wehether kernel header files exist.
-<pre>
-$ ls /lib/modules/$(uname -r)/build
-</pre>
-you will see result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/small_template_20160414.png)
 
-3. if kernel header files doesn't exist, try to install them.
+2. open `/tmp/myfifo` to read and on non-block mode by using parameters `O_RDONLY | O_NONBLOCK`, so we don't block on `open()`:
 <pre>
-$ sudo apt-get install linux-headers-$(uname -r)
+int main()
+{
+...
+        while(1){
+...
+            fd = open(myfifo, O_RDONLY | O_NONBLOCK);
+...
 </pre>
+
+3. using `select` to wait pipe message come in, we will block here until message come in:
+<pre>
+int main()
+{
+...
+        while(1){
+...
+        if ((ready_fd = select(nfds,&fdset,NULL,NULL,NULL))<0){
+...
+</pre>
+
+4. read `/tmp/myfifo` pipe message:
+<pre>
+int main()
+{
+...
+        while(1){
+...
+        read(fd, buf, MAX_BUF);
+...
+</pre>
+
 
 #How to test
 1. build code
@@ -24,30 +55,15 @@ $ sudo apt-get install linux-headers-$(uname -r)
 
 2. check `build` directory and find out build result as below: 
 <pre>
-app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
+app_a - create pipe and wait to read pipe message
+app_b - write 'Hi' message to app_a
 </pre>
 
-3. install driver.
-<pre>$ mk.sh install</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: init
-</pre>
-
-4. run app_a to test. you will see some logs in the screen.
+3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
 
 
-5. uninstall driver
-<pre>$ mk.sh uninstall</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: exit
-</pre>
-
-6. remove all build result
+4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 
