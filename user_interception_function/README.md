@@ -1,21 +1,29 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#interception function Sample code
+This sample demo how to replace exist function to yours.
 
-# How to setup build code environment
-1. install build code tools
+#Code Description
+1. we will intercept `malloc()`. redefine `malloc()` as ours: [interception.h](https://github.com/ivan0124/Linux-programming/blob/master/user_interception_function/app_src/app_a/interception.h)
 <pre>
-$ sudo apt-get install build-essential
+...
+#define malloc(n) my_malloc(n)
+void* my_malloc(int size);
+...
 </pre>
-2. check wehether kernel header files exist.
-<pre>
-$ ls /lib/modules/$(uname -r)/build
-</pre>
-you will see result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/small_template_20160414.png)
 
-3. if kernel header files doesn't exist, try to install them.
+2. implement `my_malloc()`: [interception.c](https://github.com/ivan0124/Linux-programming/blob/master/user_interception_function/app_src/app_a/interception.c)
 <pre>
-$ sudo apt-get install linux-headers-$(uname -r)
+void* my_malloc(int size){
+        printf("malloc interception <=========\n");
+}
+</pre>
+
+3. calling `malloc()`, you will see it actually call `my_malloc()` : [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_interception_function/app_src/app_a/app_a.c)
+<pre>
+int main( int argc, char* argv[])
+{
+        malloc(100);
+        return 0;
+}
 </pre>
 
 #How to test
