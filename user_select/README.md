@@ -1,52 +1,64 @@
-#Non-block pipe Sample code
-This sample demo how to create pipe and read/write it.
+#select function Sample code
+This sample demo how to use select function.
 
 #Code Description
-1. create pipe by using `mkfifo`, the pipe name is `/tmp/myfifo`:
+1. declare `fd`, `fdset` and `nfds`
 <pre>
-int main()
-{
 ...
-        char * myfifo = "/tmp/myfifo";
-...
-        while(1){
-...
-            if ( mkfifo(myfifo, 0666) < 0 ){
+    int fd=0;
+    fd_set fdset;
+    int nfds=0;
 ...
 </pre>
 
-2. open `/tmp/myfifo` to read and on non-block mode by using parameters `O_RDONLY | O_NONBLOCK`, so we don't block on `open()`:
+2. get file description `fd`:
 <pre>
-int main()
-{
+    while(1){
 ...
-        while(1){
-...
-            fd = open(myfifo, O_RDONLY | O_NONBLOCK);
+        fd = open(myfifo, O_RDONLY | O_NONBLOCK);
 ...
 </pre>
 
-3. using `select` to wait pipe message come in, we will block here until message come in:
+3. set maximum fd `nfds` for `select()`:
 <pre>
-int main()
-{
 ...
-        while(1){
+        nfds=fd+1;
 ...
         if ((ready_fd = select(nfds,&fdset,NULL,NULL,NULL))<0){
 ...
 </pre>
 
-4. read `/tmp/myfifo` pipe message:
+4. initialize `fdset` as zero and add `fd` to `fdset`:
 <pre>
-int main()
-{
 ...
-        while(1){
-...
-        read(fd, buf, MAX_BUF);
+        FD_ZERO(&fdset);
+        FD_SET(fd,&fdset);
 ...
 </pre>
+
+5. using `select()` to wait `fd` message come in(we will block here):
+<pre>
+...
+        if ((ready_fd = select(nfds,&fdset,NULL,NULL,NULL))<0){
+...
+</pre>
+
+6. check if `fd` has message come in, if yes, read `fd` message:
+<pre>
+...
+        if (FD_ISSET(fd,&fdset)){
+    	    read(fd, buf, MAX_BUF);
+...
+</pre>
+
+7. close `fd` and clear `fdset`
+<pre>
+...
+        close(fd);
+        FD_CLR(fd,&fdset);
+...
+</pre>
+
 
 
 #How to test
