@@ -2,7 +2,7 @@
 This sample demo how to replace exist function to yours.
 
 #Code Description
-1. we will intercept `malloc()`. redefine `malloc()` as ours: [interception.h](https://github.com/ivan0124/Linux-programming/blob/master/user_interception_function/app_src/app_a/interception.h)
+1. we will intercept `malloc()`. redefine `malloc()` as `my_malloc`: [interception.h](https://github.com/ivan0124/Linux-programming/blob/master/user_interception_function/app_src/app_a/interception.h)
 <pre>
 ...
 #define malloc(n) my_malloc(n)
@@ -33,29 +33,12 @@ int main( int argc, char* argv[])
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
 </pre>
 
-3. install driver.
-<pre>$ mk.sh install</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: init
-</pre>
-
-4. run app_a to test. you will see some logs in the screen.
+3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
 
-
-5. uninstall driver
-<pre>$ mk.sh uninstall</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: exit
-</pre>
-
-6. remove all build result
+4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 
