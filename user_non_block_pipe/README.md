@@ -37,7 +37,20 @@ int main()
 ...
 </pre>
 
-4. read `/tmp/myfifo` pipe message: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
+4. oepn and write 'Hi' message to `/tmp/myfifo`:
+<pre>
+int main()
+{
+        int fd;
+        char * myfifo = "/tmp/myfifo";
+
+        fd = open(myfifo, O_WRONLY);
+        write(fd, "Hi", sizeof("Hi"));
+        close(fd);
+...
+</pre>
+
+5. read `/tmp/myfifo` pipe message: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_non_block_pipe/app_src/app_a/app_a.c)
 <pre>
 int main()
 {
