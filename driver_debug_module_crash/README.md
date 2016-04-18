@@ -28,6 +28,13 @@ void test_fn(){
 }
 </pre>
 
+2. create `drv_caller.ko` assembly+c code file `drv_caller.s` for debug: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_debug_module_crash/mk.sh)
+<pre>
+...
+objdump -S drv_caller.ko > drv_caller.s
+...
+</pre>
+
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
@@ -52,9 +59,13 @@ drv_caller: init
 5. check the syslog by typing `dmesg`, code crash at address `e0a6d0a7`:
 ![result link](http://139.162.35.49/image/Linux-Programming/driver_debug_module_crash_20160418_1.png)
 
+6. type `dmesg | tail` and found the maximum module address is `1d7`, so the base addres is `e0a6d000`:
+![result link](http://139.162.35.49/image/Linux-Programming/driver_debug_module_crash_20160418_0.png)
 
+7. check the `drv_caller.s` and find out the crash code is `*ptr=0`:
+![result link](http://139.162.35.49/image/Linux-Programming/driver_debug_module_crash_20160418_2.png)
 
-5. uninstall drivers
+8. uninstall drivers
 <pre>
 $ mk.sh uninstall
 </pre>
@@ -63,7 +74,7 @@ type `dmesg`, you will see below logs
 drv_caller: exit
 </pre>
 
-6. remove all build result
+9. remove all build result
 <pre>
 $ mk.sh clean
 </pre>
