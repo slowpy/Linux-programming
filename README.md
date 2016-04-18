@@ -25,6 +25,7 @@
 * [driver_ioctl_demo](https://github.com/ivan0124/Linux-programming/tree/master/driver_ioctl_demo)
 * [driver_export_function](https://github.com/ivan0124/Linux-programming/tree/master/driver_export_function)
 * [driver_signal_to_app](https://github.com/ivan0124/Linux-programming/tree/master/driver_signal_to_app)
+* [driver_debug_module_crash](https://github.com/ivan0124/Linux-programming/tree/master/driver_debug_module_crash)
 
 ##Tools for development
 * [memwatch-2.71](https://github.com/ivan0124/Linux-programming/tree/master/memwatch-2.71)
