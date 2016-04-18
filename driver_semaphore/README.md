@@ -34,7 +34,7 @@ static int drv_caller_init(void) {
 ...
 </pre>
 
-3. use `down(&nvram_sem)` and `up(&nvram_sem)` to protect race condition:
+3. using `down(&nvram_sem)` and `up(&nvram_sem)` to protect race condition:
 <pre>
 ...
 	case IOCTL_SET_MSG:
