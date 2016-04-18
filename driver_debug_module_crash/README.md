@@ -28,7 +28,14 @@ void test_fn(){
 }
 </pre>
 
-2. create `drv_caller.ko` assembly+c code file `drv_caller.s` for debug: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_debug_module_crash/mk.sh)
+2. add source code debug information in `drv_caller.ko`: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/driver_debug_module_crash/drv_src/drv_caller/Makefile)
+<pre>
+...
+KBUILD_CFLAGS	+= -g
+...
+</pre>
+
+3. create `drv_caller.ko` assembly+c code file `drv_caller.s` for debug: [mk.sh](https://github.com/ivan0124/Linux-programming/blob/master/driver_debug_module_crash/mk.sh)
 <pre>
 ...
 objdump -S drv_caller.ko > drv_caller.s
