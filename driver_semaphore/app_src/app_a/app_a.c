@@ -58,7 +58,9 @@ main()
         int count=0;
         log("app_a start testing...\n");
         while ( count < 10 ){
-            sleep(1);
+            if ( count%2 ){
+               sleep(1);
+            }
 	    ioctl_set_msg(file_desc);
 	    count++;
         }
