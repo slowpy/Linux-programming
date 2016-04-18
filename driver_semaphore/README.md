@@ -1,5 +1,5 @@
 #Driver signal to app sample code
-This sampe demo how to use semaphore to avoid race condition.
+This sample demo how to use semaphore to avoid race condition.
 
 # How to setup build code environment
 1. install build code tools
