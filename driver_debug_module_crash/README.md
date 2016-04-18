@@ -62,7 +62,7 @@ drv_caller: init
 6. type `dmesg | tail` and found the maximum module address is `1d7`, so the base addres is `e0a6d000`:
 ![result link](http://139.162.35.49/image/Linux-Programming/driver_debug_module_crash_20160418_0.png)
 
-7. check the `drv_caller.s` and find out the crash code is `*ptr=0`:
+7. check the `drv_caller.s` and find out the crash code is `*ptr=0` in `test_fn`:
 ![result link](http://139.162.35.49/image/Linux-Programming/driver_debug_module_crash_20160418_2.png)
 
 8. uninstall drivers
