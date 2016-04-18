@@ -1,5 +1,5 @@
 #Driver signal to app sample code
-This sampe demo how the driver signal information to user space app.
+This sampe demo how to use semaphore to avoid race condition.
 
 # How to setup build code environment
 1. install build code tools
@@ -19,84 +19,38 @@ sudo apt-get install linux-headers-$(uname -r)
 </pre>
 
 #Code Description
-1. the driver `drv_caller.ko` has ioctl for `app_a` to set app_a process id: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
-<pre>
-static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
-...
-        switch (ioctl_num) {
-	        case IOCTL_SET_MSG:
-		        printk("<1>drv_caller: enter IOCTL_SET_MSG\n");
-		        copy_from_user(pData,(app_info*)ioctl_param,size);
-		        g_pid=(int)(pData->pid);
-...
-} 
-</pre>
-
-2.  the driver `drv_caller.ko` has ioctl for `app_a` to setup timer to send signal: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
+1. declare semaphore `nvram_sem`:
 <pre>
 ...
-    switch (ioctl_num) {
-	    case IOCTL_SET_MSG:
-....
-		    setup_timer(&my_timer, my_timer_callback, 0);
-            mod_timer(&my_timer, jiffies + msecs_to_jiffies(1000));
+static DECLARE_MUTEX(nvram_sem);
 ...
 </pre>
 
-3. the driver `drv_caller.ko` send signal to `app_a` pid: [drv_caller.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/drv_src/drv_caller/drv_caller.c)
+2. using `init_MUTEX` to initialize `nvram_sem`:
 <pre>
-void my_timer_callback( unsigned long data )
-{
+static int drv_caller_init(void) {
 ...
-        p = pid_task(find_vpid(g_pid),PIDTYPE_PID);
-...
-	    ret = send_sig_info(SIG_TEST, &info, p);    //send the signal
+        init_MUTEX(&nvram_sem);
 ...
 </pre>
 
-4. `app_a` register handler to receive `drv_caller.ko` signal: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
+3. use `down(&nvram_sem)` and `up(&nvram_sem)` to protect race condition:
 <pre>
-main(){
 ...
-	    struct sigaction sig;
-	    sig.sa_sigaction = receiveData;
-	    sig.sa_flags = SA_SIGINFO;
-	    sigaction(SIG_TEST, &sig, NULL);
+	case IOCTL_SET_MSG:
+		down(&nvram_sem);
+                 "this area is protected from race condition"
+        up(&nvram_sem);
 ...
 </pre>
-
-5. `app_a` set ioctl to `drv_caller.ko` to set pid and trigger timer: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
-<pre>
-ioctl_set_msg(int file_desc)
-{
-	    int ret_val;
-        app_info app_a_info;
-         
-        app_a_info.pid=getpid();
-        log("pid:%d\n", app_a_info.pid);
-        
-	    ret_val = ioctl(file_desc, IOCTL_SET_MSG, &app_a_info);
-...
-</pre>
-
-6. `app_a` use `pasue()` to wait driver signal: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/driver_signal_to_app/app_src/app_a/app_a.c)
-<pre>
-main(){
-...
-        while(1){
-	        pause();
-            count++;
-        }
-...
-</pre>
- 
 
 #How to test
 1. build code
 <pre>$ mk.sh build</pre>
 2. check `build` directory and find out build result 
 <pre>
-app_a - application which receive signal from drv_caller.ko
+app_a - application which set ioctl to drv_caller.ko
+app_b - application which set ioct to drv_caller.ko
 drv_caller.ko - driver which send signal to app_a
 drv_caller.sh - script for install and uninstall driver
 </pre>
@@ -109,13 +63,15 @@ type `dmesg`, you will see below logs
 drv_caller: init
 </pre>
 
-4. run app_a to test
+4. type `mk.sh test` to test, until see test finish log.
 <pre>$ mk.sh test </pre>
 you will see below logs
-![test result link](http://139.162.35.49/image/Linux-Programming/driver_signal_to_app_20160413.png)
+![test result link](http://139.162.35.49/image/Linux-Programming/driver_semaphore_1.png)
 
+5. type `dmesg` to see logs:
+![test result link](http://139.162.35.49/image/Linux-Programming/driver_semaphore_2.png) 
 
-5. uninstall drivers
+6. uninstall drivers
 <pre>
 $ mk.sh uninstall
 </pre>
@@ -124,7 +80,7 @@ type `dmesg`, you will see below logs
 drv_caller: exit
 </pre>
 
-6. remove all build result
+7. remove all build result
 <pre>
 $ mk.sh clean
 </pre>
