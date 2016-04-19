@@ -100,8 +100,10 @@ udp_server - application which receive udp packets
 lib_common.so - shared library
 </pre>
 
-3. type `mk.sh test` to test. you will see test result like below:
+3. type `mk.sh test` to test. 
 <pre>$ mk.sh test </pre>
+you can see test result like below:
+![result link](http://139.162.35.49/image/Linux-Programming/find_socket_process_20160419_5.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
