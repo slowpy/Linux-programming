@@ -1,22 +1,7 @@
-#Small Template Sample code
-This is a sample to demo how to bulid app, library and driver by Makefile.
+#UDP broadcast client/server Sample code
+This sample demo how to broadcast and receive udp packets.
 
-# How to setup build code environment
-1. install build code tools
-<pre>
-$ sudo apt-get install build-essential
-</pre>
-2. check wehether kernel header files exist.
-<pre>
-$ ls /lib/modules/$(uname -r)/build
-</pre>
-you will see result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/small_template_20160414.png)
-
-3. if kernel header files doesn't exist, try to install them.
-<pre>
-$ sudo apt-get install linux-headers-$(uname -r)
-</pre>
+# Code Description
 
 #How to test
 1. build code
@@ -24,30 +9,15 @@ $ sudo apt-get install linux-headers-$(uname -r)
 
 2. check `build` directory and find out build result as below: 
 <pre>
-app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
+udp_client - application which broadcast udp packets
+udp_server - application which receive udp packets
+lib_common.so - shared library
 </pre>
 
-3. install driver.
-<pre>$ mk.sh install</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: init
-</pre>
-
-4. run app_a to test. you will see some logs in the screen.
+3. type `mk.sh test` to test. you will see test result like below:
 <pre>$ mk.sh test </pre>
 
-
-5. uninstall driver
-<pre>$ mk.sh uninstall</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: exit
-</pre>
-
-6. remove all build result
+4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 
