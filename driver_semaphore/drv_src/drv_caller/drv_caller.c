@@ -29,7 +29,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
     int size=sizeof(app_info);
     app_info* pData=(app_info*)kmalloc(size,GFP_KERNEL);
     
-    printk("<1>drv_caller: ioctl\n");
+    printk("<1>drv_caller: %s ioctl\n", current->comm);
     
     if (!pData){
 	printk("<1>hello_driver: kmalloc fail\n");
@@ -42,6 +42,7 @@ static int drv_caller_ioctl(struct inode *inode, struct file *filp, unsigned int
     switch (ioctl_num) {
 	case IOCTL_SET_MSG:
 		down(&nvram_sem);
+	        mdelay(1000);
                 printk("<1>drv_caller:===>%s(pid=%d)lock semaphore\n", current->comm, current->pid);
 		copy_from_user(pData,(app_info*)ioctl_param,size);
 		g_pid=(int)(pData->pid);
