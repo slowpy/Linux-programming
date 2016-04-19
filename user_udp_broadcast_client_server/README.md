@@ -8,7 +8,7 @@ This sample demo how to broadcast and receive udp packets.
     sock = socket (PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 ...
 </pre>
-type `ls /proc/{PID}/fd -al` you can find socket `fd`. example as below (PID=2227):
+when `udp_server` is running. type `ls /proc/{PID}/fd -al`, you can find socket `fd`. example as below (PID=2227):
 ![result link](http://139.162.35.49/image/Linux-Programming/find_socket_process_20160419_2.png)
 
 2. [server side] using `setsockopt()` to set socket timeout which avoid `recvfrom()` block too long: [udp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/server/udp_server.c)
@@ -31,6 +31,8 @@ type `ls /proc/{PID}/fd -al` you can find socket `fd`. example as below (PID=222
     status = bind(sock, (struct sockaddr *)&sock_in, sinlen);
 ...
 </pre>
+when `udp_server` is running. type `cat /proc/net/udp`, you can find message like below example.
+![result link](http://139.162.35.49/image/Linux-Programming/find_socket_process_20160419_3.png)
 
 4. [server side] using `recvfrom()` to wait and receive data come in ( if no data, we will block here until timeout ): [udp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/server/udp_server.c)
 <pre>
