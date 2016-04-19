@@ -30,14 +30,14 @@ This sample demo how to broadcast and receive udp packets.
 ...
 </pre>
 
-4. [server side] using `recvfrom()` to wait and receive data come in ( if no data, we will block here until timeout ):
+4. [server side] using `recvfrom()` to wait and receive data come in ( if no data, we will block here until timeout ): [udp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/server/udp_server.c)
 <pre>
 ...
     status = recvfrom(sock, buffer, sizeof(buffer), 0, (struct sockaddr *)&sock_in, &sinlen);
 ...
 </pre>
 
-5. [server side] using `shutdown()` to stop sokcet operation and `close` to close socket:
+5. [server side] using `shutdown()` to stop sokcet operation and `close` to close socket: [udp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/server/udp_server.c)
 <pre>
 ...
   shutdown(sock, 2);
