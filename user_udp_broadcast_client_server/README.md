@@ -70,14 +70,14 @@ This sample demo how to broadcast and receive udp packets.
 ...
 </pre>
 
-9. [client side] using `sendto()` to broadcast UDP packets:
+9. [client side] using `sendto()` to broadcast UDP packets: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
 <pre>
 ...
     status = sendto(sock, buffer, buflen, 0, (struct sockaddr *)&sock_in, sinlen);
 ...
 </pre>
 
-10. [client side] using `shutdown()` to stop sokcet operation and `close` to close socket:
+10. [client side] using `shutdown()` to stop sokcet operation and `close` to close socket: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
 <pre>
 ...
   shutdown(sock, 2);
