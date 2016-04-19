@@ -25,9 +25,9 @@ int main()
 	  return;
   }
  
-  sock_in.sin_addr.s_addr = htonl(INADDR_ANY);
-  sock_in.sin_port = htons(60000);
-  sock_in.sin_family = PF_INET;
+  sock_in.sin_addr.s_addr = htonl(INADDR_ANY); //receive all network interface data
+  sock_in.sin_port = htons(60000); //receive port 60000 data
+  sock_in.sin_family = PF_INET; //internet family
 
   status = bind(sock, (struct sockaddr *)&sock_in, sinlen);
   log("Bind Status = %d\n", status);
