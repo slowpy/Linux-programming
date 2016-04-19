@@ -37,14 +37,22 @@ This sample demo how to broadcast and receive udp packets.
 ...
 </pre>
 
-5. [client side] using `socket()` to create UDP socket: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+5. [server side] using `shutdown()` to stop sokcet operation and `close` to close socket:
+<pre>
+...
+  shutdown(sock, 2);
+  close(sock);
+...
+</pre>
+
+6. [client side] using `socket()` to create UDP socket: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
 <pre>
 ...
     sock = socket (PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 ...
 </pre>
 
-6. [client side] using `bind()` to bind socket with `IP address`, `port` and `network family`: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+7. [client side] using `bind()` to bind socket with `IP address`, `port` and `network family`: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
 <pre>
 ...
     sock_in.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -55,17 +63,25 @@ This sample demo how to broadcast and receive udp packets.
 ...
 </pre>
 
-7. [client side] using `setsockopt()` set socket to broadcast UDP packets: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+8. [client side] using `setsockopt()` set socket to broadcast UDP packets: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
 <pre>
 ...
     status = setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &yes, sizeof(int) );
 ...
 </pre>
 
-8. [client side] using `sendto()` to broadcast UDP packets:
+9. [client side] using `sendto()` to broadcast UDP packets:
 <pre>
 ...
     status = sendto(sock, buffer, buflen, 0, (struct sockaddr *)&sock_in, sinlen);
+...
+</pre>
+
+10. [client side] using `shutdown()` to stop sokcet operation and `close` to close socket:
+<pre>
+...
+  shutdown(sock, 2);
+  close(sock);
 ...
 </pre>
 
