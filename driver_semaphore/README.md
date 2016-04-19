@@ -69,7 +69,7 @@ you will see below logs
 ![test result link](http://139.162.35.49/image/Linux-Programming/driver_semaphore_1.png)
 
 5. type `dmesg` to see logs:
-![test result link](http://139.162.35.49/image/Linux-Programming/driver_semaphore_2.png) 
+![test result link](http://139.162.35.49/image/Linux-Programming/driver_semaphore_20160419.png) 
 
 6. uninstall drivers
 <pre>
