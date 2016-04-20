@@ -28,7 +28,6 @@ int main(int argc, char* argv[]){
     }
     log("get file information(sb.st_size, sb.st_mode...)...[OK]\n");
 
-    log("check if test.txt is regular file... [OK]\n");
     if (!S_ISREG(sb.st_mode)){
         log("check if the file is regular file... [FAIL]\n");
 	return -1;
