@@ -1,5 +1,6 @@
-#UDP broadcast client/server Sample code
-This sample demo how to broadcast and receive udp packets.
+#TCP client/server Sample code
+This sample demo how to send and receive TCP packets.
+![result link](http://139.162.35.49/image/Linux-Programming/user_tcp_client_server_20160420.gif)
 
 # Code Description
 1. [server side] using `socket()` to create UDP `socket fd` (sock): [udp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/server/udp_server.c)
