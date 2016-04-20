@@ -9,7 +9,7 @@ This sample demo how to send and receive TCP packets.
 sockfd = socket(PF_INET, SOCK_STREAM, 0);
 ...
 </pre>
-when `tcp_server` is running. type `ls /proc/{PID}/fd -al`, you can find `socket fd` (sock). example as below (PID=2227):
+when `tcp_server` is running. type `ls /proc/{PID}/fd -al`, you can find `socket fd` (sockfd). example as below (PID=2227):
 ![result link](http://139.162.35.49/image/Linux-Programming/find_socket_process_20160419_4.png)
 
 
