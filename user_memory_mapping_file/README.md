@@ -52,15 +52,14 @@ fd = open("./test.txt", O_RDONLY);
 
 2. check `build` directory and find out build result as below: 
 <pre>
-tcp_client - application which send/receive tcp packets
-tcp_server - application which send/receive tcp packets
+mmap- application which demo mapping file into memory
 lib_common.so - shared library
 </pre>
 
 3. type `mk.sh test` to test. 
 <pre>$ mk.sh test </pre>
 you can see test result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/user_tcp_client_server_20160420_1.png)
+![result link](http://139.162.35.49/image/Linux-Programming/user_memory_mapping_file_20160420_2.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
