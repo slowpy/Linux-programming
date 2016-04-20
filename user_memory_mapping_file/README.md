@@ -3,35 +3,35 @@ This sample demo how to use `mmap()` to mapping file to process memory address s
 ![result link](http://139.162.35.49/image/Linux-Programming/user_memory_mapping_file_20160420_1.png)
 
 # Code Description
-1. using `open()` with `O_RDONLY` to get `fd` for read:
+1. using `open()` with `O_RDONLY` to get `fd` for read: [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
 fd = open("./test.txt", O_RDONLY);
 ...
 </pre>
 
-2. using `fstat()` to get file information(sb.st_size, sb.st_mode...):
+2. using `fstat()` to get file information(sb.st_size, sb.st_mode...): [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
     if ( fstat(fd, &sb) == -1 ){
 ...
 </pre>
 
-3. using `S_ISREG(sb.st_mode)` to check if the file is regular file
+3. using `S_ISREG(sb.st_mode)` to check if the file is regular file: [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
     if (!S_ISREG(sb.st_mode)){
 ...
 </pre>
 
-4. using `mmap()` mapping file into process memory sapce and get address `p`:
+4. using `mmap()` mapping file into process memory sapce and get address `p`: [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
     p = mmap(0, sb.st_size, PROT_READ, MAP_SHARED, fd, 0);
 ...
 </pre>
 
-5. using `putchar()` to print address `p` memory content:
+5. using `putchar()` to print address `p` memory content: [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
     for (len=0; len < sb.st_size; len++)
@@ -39,7 +39,7 @@ fd = open("./test.txt", O_RDONLY);
 ...
 </pre>
 
-6. using `munmap()` to release addrss `p` memory:
+6. using `munmap()` to release addrss `p` memory: [mmap.c](https://github.com/ivan0124/Linux-programming/blob/master/user_memory_mapping_file/app_src/mmap/mmap.c)
 <pre>
 ...
     if (munmap(p, sb.st_size) == -1){
