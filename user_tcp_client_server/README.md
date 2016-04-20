@@ -107,15 +107,15 @@ sockfd=socket(PF_INET, SOCK_STREAM, 0);
 
 2. check `build` directory and find out build result as below: 
 <pre>
-udp_client - application which broadcast udp packets
-udp_server - application which receive udp packets
+tcp_client - application which send/receive tcp packets
+tcp_server - application which send/receive tcp packets
 lib_common.so - shared library
 </pre>
 
 3. type `mk.sh test` to test. 
 <pre>$ mk.sh test </pre>
 you can see test result like below:
-![result link](http://139.162.35.49/image/Linux-Programming/find_socket_process_20160419_5.png)
+![result link](http://139.162.35.49/image/Linux-Programming/user_tcp_client_server_20160420_1.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
