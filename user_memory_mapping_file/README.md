@@ -1,6 +1,6 @@
-#TCP client/server Sample code
-This sample demo how to send and receive TCP packets.
-![result link](http://139.162.35.49/image/Linux-Programming/user_tcp_client_server_20160420.gif)
+#Mapping files into memory Sample code
+This sample demo how to use `mmap()` to mapping file to process memory address space.
+![result link](http://139.162.35.49/image/Linux-Programming/user_memory_mapping_file_20160420_1.png)
 
 # Code Description
 1. [server side] using `socket()` to create TCP `socket fd`(sockfd): [tcp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/server/tcp_server.c)
