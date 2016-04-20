@@ -18,14 +18,6 @@ case "$1" in
 	else
    	     make clean
 	fi ;;
-	install)
-	cd ./build
-	./drv_hello.sh install
-	cd .. ;;
-	uninstall)
-	cd ./build
-	./drv_hello.sh uninstall
-	cd .. ;;
 	test)
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
