@@ -3,10 +3,10 @@ This sample demo how to send and receive TCP packets.
 ![result link](http://139.162.35.49/image/Linux-Programming/user_tcp_client_server_20160420.gif)
 
 # Code Description
-1. [server side] using `socket()` to create UDP `socket fd`(sockfd): [tcp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/server/tcp_server.c)
+1. [server side] using `socket()` to create TCP `socket fd`(sockfd): [tcp_server.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/server/tcp_server.c)
 <pre>
 ...
-        sockfd = socket(PF_INET, SOCK_STREAM, 0);
+sockfd = socket(PF_INET, SOCK_STREAM, 0);
 ...
 </pre>
 when `tcp_server` is running. type `ls /proc/{PID}/fd -al`, you can find `socket fd` (sock). example as below (PID=2227):
@@ -62,36 +62,42 @@ when `tcp_server` is running. type `ls /proc/{PID}/fd -al`, you can find `socket
 ...
 </pre>
 
-7. [client side] using `bind()` to bind socket with `IP address`, `port` and `network family`: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+8. [client side] using `socket()` to create TCP `socket fd`(sockfd): [tcp_client.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/client/tcp_client.c)
 <pre>
 ...
-    sock_in.sin_addr.s_addr = htonl(INADDR_ANY);
-    sock_in.sin_port = htons(60000);
-    sock_in.sin_family = PF_INET;
-
-    status = bind(sock, (struct sockaddr *)&sock_in, sinlen);
+sockfd=socket(PF_INET, SOCK_STREAM, 0);
 ...
 </pre>
 
-8. [client side] using `setsockopt()` set socket to broadcast UDP packets: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+9. [client side] using `connect()` to connect server `127.0.0.1:8889`: [tcp_client.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/client/tcp_client.c)
 <pre>
 ...
-    status = setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &yes, sizeof(int) );
+   dest.sin_family = PF_INET;
+   dest.sin_port = htons(8889);
+   dest.sin_addr.s_addr = inet_addr("127.0.0.1");
+...
+   connect(sockfd, (struct sockaddr*)&dest, sizeof(dest));
 ...
 </pre>
 
-9. [client side] using `sendto()` to broadcast UDP packets: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+10. [client side] using `recv()` to receive server data: [tcp_client.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/client/tcp_client.c)
 <pre>
 ...
-    status = sendto(sock, buffer, buflen, 0, (struct sockaddr *)&sock_in, sinlen);
+    recv(sockfd, buffer, sizeof(buffer), 0);
 ...
 </pre>
 
-10. [client side] using `shutdown()` to stop sokcet operation and `close` to close socket: [udp_client](https://github.com/ivan0124/Linux-programming/blob/master/user_udp_broadcast_client_server/app_src/client/udp_client.c)
+11. [client side] using `send()` to send data to server: [tcp_client.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/client/tcp_client.c)
 <pre>
 ...
-  shutdown(sock, 2);
-  close(sock);
+    send(sockfd, resp, strlen(resp),0);
+...
+</pre>
+
+12. [client side] close socket when is is not used: [tcp_client.c](https://github.com/ivan0124/Linux-programming/blob/master/user_tcp_client_server/app_src/client/tcp_client.c)
+<pre>
+...
+  close(sockfd);
 ...
 </pre>
 
