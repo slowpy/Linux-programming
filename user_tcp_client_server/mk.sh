@@ -22,7 +22,7 @@ case "$1" in
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
 	./tcp_server&
-	sleep 3
+	sleep 1
         ./tcp_client
 	cd .. ;;
 	*)
