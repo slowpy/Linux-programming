@@ -89,14 +89,50 @@ show_result(){
     fi
 }
 
-#pid=1408
-#fd_type=socket
-#inode=8092
-#is_inode_found $pid $fd_type $inode
 
-#echo "is_match ret=$?"
-#find_pid $inode
-#if [ "$?" != "0" ] ; then
-#    echo "xxxxxxxxxxxxxxx===> find out inode 8092:pid=$pid"
-#fi
+#usage: list_opened_socket_port_process_info /proc/net/tcp
+list_opened_socket_port_process_info(){
+   
+    echo "cat $1"
+    cat $1
+    local list=`cat $1`
+
+    while read line; do 
+        #echo "LINE: $line";
+        local port=`echo $line | cut -d " " -f 2 | cut -d ":" -f 2`
+        #echo "port: $port"
+     
+        local port_valid=0;
+        local inode_valid=0;
+        #check if it is hex number
+        is_hex $port 
+        if [ $? -eq 0 ] ; then
+            #echo "$port is hex a number"
+            #convert hex to decimal port
+            local decimal_port=$((0x$port))
+            #echo "decimal port=$decimal_port"
+            port_valid=1
+        fi
+
+        #check inode number
+        local inode=`echo $line | cut -d " " -f 10`
+        #echo "inode===:$inode"
+        is_decimal $inode
+        if [ $? -eq 0 ] ; then
+            #echo "$inode is decimal number"
+            inode_valid=1
+        fi
+
+        #if port and indoe both valid, then find out process id
+        if [ "$port_valid" == "1" ] && [ "$inode_valid" == "1" ] ; then
+            #echo "both valid"
+            find_pid $inode
+            if [ "$?" != "0" ] ; then
+                local ps_name=`ps -p $pid -o comm=`
+                echo "inode is $inode,$ps_name(pid=$pid). open socket port=$decimal_port(hex:$port)"
+            fi
+        fi
+        
+    done <<< "$list"
+}
 
