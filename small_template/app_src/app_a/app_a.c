@@ -12,7 +12,7 @@ int main( int argc, char* argv[])
     test_lib_a1();
     
     char res[256]={0};
-    get_shell_cmd_result("ls", res, sizeof(res));
-    log("%s",res);
+    get_shell_cmd_result("./test.sh", res, sizeof(res));
+    log("%s\n",res);
     return 0;
 }

@@ -3,6 +3,7 @@ CFLAGS	:=-g -I../../com_lib_src/lib_common
 LDFLAGS	:=-L$(BUILD_PATH)
 LDLIBS	:=-l_demo_a -l_common
 EXE	:=app_a
+SCRIPT	:=test.sh
 SRC	:= $(wildcard *.c)
 OBJ	:= $(patsubst %.c,%.o,$(SRC))
 
@@ -13,7 +14,7 @@ $(warning OBJ=$(OBJ))
 all:$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(EXE)
 	@mkdir -p $(BUILD_PATH)
-	@cp -rf $(EXE) $(BUILD_PATH)
+	@cp -rf $(SCRIPT) $(EXE) $(BUILD_PATH)
 
 clean:
 	rm -rf *.o
