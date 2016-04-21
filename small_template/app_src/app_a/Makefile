@@ -3,7 +3,7 @@ CFLAGS	:=-g -I../../com_lib_src/lib_common
 LDFLAGS	:=-L$(BUILD_PATH)
 LDLIBS	:=-l_demo_a -l_common
 EXE	:=app_a
-SCRIPT	:=test.sh
+SCRIPT	:=test.sh call_app_a.sh
 SRC	:= $(wildcard *.c)
 OBJ	:= $(patsubst %.c,%.o,$(SRC))
 

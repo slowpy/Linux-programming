@@ -29,7 +29,7 @@ case "$1" in
 	test)
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
-	./app_a
+	./call_app_a.sh
 	cd .. ;;
 	*)
 	echo "step1: 'mk.sh build' to build code. 'mk.sh clean to clean build result'"
