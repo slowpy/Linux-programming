@@ -15,7 +15,7 @@ $ sudo apt-get libssl-dev
 </pre>
 
 #Code Description
-1. [generating RSA public key and private key](https://github.com/ivan0124/Linux-programming/wiki/How-to-generate-RSA-public-and-private-keys%28PEM-format%29-with-openssl-%3F) and put in source code: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+1. [generating RSA public key and private key](https://github.com/ivan0124/Linux-programming/wiki/How-to-generate-RSA-public-and-private-keys%28PEM-format%29-with-openssl-%3F) `publicKey` and `privateKey`, then put in source code: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
 <pre>
 main(){
 ...
@@ -75,6 +75,8 @@ int public_encrypt(unsigned char * data,int data_len,unsigned char * key, unsign
         return result;
 }
 ...
+int encrypted_length= public_encrypt(plainText,strlen(plainText),publicKey,encrypted);
+...
 </pre>
 
 4. using `private_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
@@ -86,6 +88,8 @@ int private_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, u
         int  result = RSA_private_decrypt(data_len,enc_data,decrypted,rsa,padding);
         return result;
 }
+...
+int decrypted_length = private_decrypt(encrypted,encrypted_length,privateKey, decrypted);
 ...
 </pre>
 
@@ -99,6 +103,8 @@ int private_encrypt(unsigned char * data,int data_len,unsigned char * key, unsig
         return result;
 }
 ...
+encrypted_length= private_encrypt(plainText,strlen(plainText),privateKey,encrypted);
+...
 </pre>
 
 6. using `public_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
@@ -110,6 +116,8 @@ int public_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, un
     int  result = RSA_public_decrypt(data_len,enc_data,decrypted,rsa,padding);
     return result;
 }
+...
+decrypted_length = public_decrypt(encrypted,encrypted_length,publicKey, decrypted);
 ...
 </pre>
 
