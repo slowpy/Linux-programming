@@ -4,7 +4,7 @@ This sample demo:
 * how to use RSA private key encrypt and public key decrypt plaintext
 
 # How to setup build code environment
-1. install openssl for generate public key and private key
+1. install openssl for [generate public key and private key](https://github.com/ivan0124/Linux-programming/wiki/How-to-generate-RSA-public-and-private-keys%28PEM-format%29-with-openssl-%3F)
 <pre>
 $ sudo apt-get install openssl
 </pre>
