@@ -65,7 +65,53 @@ main(){
 char plainText[2048/8] = "Hello this is ivan"; //key length : 2048
 </pre>
 
-3.
+3. step3,4 explain how public key encrypt and private key decrypt. using `public_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+<pre>
+...
+int public_encrypt(unsigned char * data,int data_len,unsigned char * key, unsigned char *encrypted)
+{
+        RSA * rsa = createRSA(key,1);
+        int result = RSA_public_encrypt(data_len,data,encrypted,rsa,padding);
+        return result;
+}
+...
+</pre>
+
+4. using `private_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+<pre>
+...
+int private_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, unsigned char *decrypted)
+{
+        RSA * rsa = createRSA(key,0);
+        int  result = RSA_private_decrypt(data_len,enc_data,decrypted,rsa,padding);
+        return result;
+}
+...
+</pre>
+
+5. step5,6 explain how private key encrypt and public key decrypt. using `private_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+<pre>
+...
+int private_encrypt(unsigned char * data,int data_len,unsigned char * key, unsigned char *encrypted)
+{
+        RSA * rsa = createRSA(key,0);
+        int result = RSA_private_encrypt(data_len,data,encrypted,rsa,padding);
+        return result;
+}
+...
+</pre>
+
+6. using `public_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+<pre>
+...
+int public_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, unsigned char *decrypted)
+{
+    RSA * rsa = createRSA(key,1);
+    int  result = RSA_public_decrypt(data_len,enc_data,decrypted,rsa,padding);
+    return result;
+}
+...
+</pre>
 
 #How to test
 1. build code
@@ -74,8 +120,7 @@ char plainText[2048/8] = "Hello this is ivan"; //key length : 2048
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
-drv_hello.ko - driver
+lib_common.so - shared library
 </pre>
 
 3. run app_a to test. you will see some logs in the screen.
