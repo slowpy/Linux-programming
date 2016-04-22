@@ -152,6 +152,7 @@ lib_common.so - shared library
 
 3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
+
 you will see result like below:
 ![result link](http://139.162.35.49/image/Linux-Programming/RSA_20160422_1.png)
 
