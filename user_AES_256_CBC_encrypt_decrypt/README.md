@@ -1,7 +1,7 @@
-#RSA pair key encrypt/decrypt Sample code
-This sample demo:
-* how to use RSA public key encrypt and private key decrypt plaintext
-* how to use RSA private key encrypt and public key decrypt plaintext
+#AES 256 CBC(Chipher Block Chaining) encrypt/decrypt Sample code
+This sample demo how to use AES 256 CBC to encrypt/decrypt plaintext. (256 means key length is 256 bits)
+
+![result link](http://139.162.35.49/image/Linux-Programming/AES_256_CBC_encryption_20160422.png)
 
 # How to setup build code environment
 1. install openssl for [generate RSA public key and private key](https://github.com/ivan0124/Linux-programming/wiki/How-to-generate-RSA-public-and-private-keys%28PEM-format%29-with-openssl-%3F)
