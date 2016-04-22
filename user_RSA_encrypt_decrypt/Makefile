@@ -3,13 +3,9 @@
 export BUILD_PATH=$(shell pwd)/build
 export CC=gcc
 APP_SRC_DIR   := $(shell ls -d ./app_src/*/)
-COM_LIB_SRC_DIR	:= $(shell ls -d ./com_lib_src/*/)
 SRC_DIR	:=$(COM_LIB_SRC_DIR) $(APP_SRC_DIR)
 
 $(warning APP_SRC_DIR=====>$(APP_SRC_DIR))
-$(warning LIB_SRC_DIR=====>$(LIB_SRC_DIR))
-$(warning COM_LIB_SRC_DIR=====>$(COM_LIB_SRC_DIR))
-$(warning DRV_SRC_DIR=====>$(DRV_SRC_DIR))
 
 all:
 	@mkdir -p $(BUILD_PATH)

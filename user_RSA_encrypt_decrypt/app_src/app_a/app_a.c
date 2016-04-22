@@ -1,5 +1,4 @@
 /*app_a.c*/
-#include "lib_common.h"
 #include <openssl/pem.h>
 #include <openssl/ssl.h>
 #include <openssl/rsa.h>
@@ -7,7 +6,6 @@
 #include <openssl/bio.h>
 #include <openssl/err.h>
 #include <stdio.h>
-#include "lib_common.h"
  
 int padding = RSA_PKCS1_PADDING;
  
@@ -125,7 +123,7 @@ int main(){
         printLastError("Public Encrypt failed ");
         exit(0);
     }
-    printf("Encrypted length =%d\n",encrypted_length);
+    printf("[public key encrypt]:Encrypted length =%d\n",encrypted_length);
  
     int decrypted_length = private_decrypt(encrypted,encrypted_length,privateKey, decrypted);
     if(decrypted_length == -1)
@@ -134,8 +132,7 @@ int main(){
         exit(0);
     }
 
-    printf("Decrypted Text =%s\n",decrypted);
-    printf("Decrypted Length =%d\n",decrypted_length);
+    printf("[private key decrypt]:Decrypted Text =%s, length=%d\n",decrypted, decrypted_length);
   
     encrypted_length= private_encrypt(plainText,strlen(plainText),privateKey,encrypted);
     if(encrypted_length == -1)
@@ -143,7 +140,7 @@ int main(){
         printLastError("Private Encrypt failed");
         exit(0);
     }
-    printf("Encrypted length =%d\n",encrypted_length);
+    printf("[private key encrypt]:Encrypted length =%d\n",encrypted_length);
  
     decrypted_length = public_decrypt(encrypted,encrypted_length,publicKey, decrypted);
     if(decrypted_length == -1)
@@ -151,7 +148,7 @@ int main(){
         printLastError("Public Decrypt failed");
         exit(0);
     }
-    printf("Decrypted Text =%s\n",decrypted);
-    printf("Decrypted Length =%d\n",decrypted_length); 
+    printf("[public key decrypt]:Decrypted Text =%s, length=%d\n",decrypted, decrypted_length);
+    //printf("[public key decrypt]:Decrypted Length =%d\n",decrypted_length); 
  
 }

@@ -1,13 +1,12 @@
 #Makefile
-CFLAGS	:=-g -I../../com_lib_src/lib_common
+CFLAGS	:=-g
 LDFLAGS	:=-L$(BUILD_PATH)
-LDLIBS	:=-l_common -lcrypto
+LDLIBS	:=-lcrypto
 EXE	:=app_a
 SCRIPT	:=
 SRC	:= $(wildcard *.c)
 OBJ	:= $(patsubst %.c,%.o,$(SRC))
 
-.*.h : ../../com_lib_src/lib_common/
 
 $(warning OBJ=$(OBJ))
 
