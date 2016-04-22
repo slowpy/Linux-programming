@@ -150,7 +150,7 @@ app_a - application
 lib_common.so - shared library
 </pre>
 
-3. run app_a to test.
+3. run `mk.sh test` to test.
 <pre>$ mk.sh test </pre>
 ![result link](http://139.162.35.49/image/Linux-Programming/RSA_20160422_1.png)
 
