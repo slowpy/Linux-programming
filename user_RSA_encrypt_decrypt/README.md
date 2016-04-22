@@ -65,7 +65,14 @@ main(){
 char plainText[2048/8] = "Hello this is ivan"; //key length : 2048
 </pre>
 
-3. step3,4 explain how public key encrypt and private key decrypt. using `public_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+3. link openssl library: [Makefile](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/Makefile)
+<pre>
+...
+LDLIBS	:=-lcrypto
+...
+</pre>
+
+4. step4,5 explain how public key encrypt and private key decrypt. using `public_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
 <pre>
 ...
 int public_encrypt(unsigned char * data,int data_len,unsigned char * key, unsigned char *encrypted)
@@ -79,7 +86,7 @@ int encrypted_length= public_encrypt(plainText,strlen(plainText),publicKey,encry
 ...
 </pre>
 
-4. using `private_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+5. using `private_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
 <pre>
 ...
 int private_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, unsigned char *decrypted)
@@ -93,7 +100,7 @@ int decrypted_length = private_decrypt(encrypted,encrypted_length,privateKey, de
 ...
 </pre>
 
-5. step5,6 explain how private key encrypt and public key decrypt. using `private_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+6. step6,7 explain how private key encrypt and public key decrypt. using `private_encrypt()` to encrypt plainText and encrypted text to `encrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
 <pre>
 ...
 int private_encrypt(unsigned char * data,int data_len,unsigned char * key, unsigned char *encrypted)
@@ -107,7 +114,7 @@ encrypted_length= private_encrypt(plainText,strlen(plainText),privateKey,encrypt
 ...
 </pre>
 
-6. using `public_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
+7. using `public_decrypt()` to decrypt encrypted text and put plaintext to `decrypted`: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_RSA_encrypt_decrypt/app_src/app_a/app_a.c)
 <pre>
 ...
 int public_decrypt(unsigned char * enc_data,int data_len,unsigned char * key, unsigned char *decrypted)
