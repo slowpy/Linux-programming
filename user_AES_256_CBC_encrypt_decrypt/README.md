@@ -4,12 +4,7 @@ This sample demo how to use AES 256 CBC to encrypt/decrypt plaintext. (256 means
 ![result link](http://139.162.35.49/image/Linux-Programming/AES_256_CBC_encryption_20160422.png)
 
 # How to setup build code environment
-1. install openssl for [generate RSA public key and private key](https://github.com/ivan0124/Linux-programming/wiki/How-to-generate-RSA-public-and-private-keys%28PEM-format%29-with-openssl-%3F)
-<pre>
-$ sudo apt-get install openssl
-</pre>
-
-2. install openssl library and header file for compiliation. you will sea header files installed in `/usr/include/openssl`
+1. install openssl library and header file for compiliation. you will sea header files installed in `/usr/include/openssl`
 <pre>
 $ sudo apt-get libssl-dev
 </pre>
