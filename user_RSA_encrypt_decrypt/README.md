@@ -4,12 +4,17 @@ This sample demo:
 * how to use RSA private key encrypt and public key decrypt plaintext
 
 # How to setup build code environment
-1. install openssl header file for compiler. you will files installed in `/usr/include/openssl`
+1. install openssl for generate public key and private key
+<pre>
+$ sudo apt-get install openssl
+</pre>
+
+2. install openssl library and header file for compiliation. you will sea header files installed in `/usr/include/openssl`
 <pre>
 $ sudo apt-get libssl-dev
 </pre>
 
-#
+#Code Description
 
 #How to test
 1. build code
@@ -22,25 +27,11 @@ lib_demo_a.so, lib_demo_b.so, lib_common.so - shared library
 drv_hello.ko - driver
 </pre>
 
-3. install driver.
-<pre>$ mk.sh install</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: init
-</pre>
-
-4. run app_a to test. you will see some logs in the screen.
+3. run app_a to test. you will see some logs in the screen.
 <pre>$ mk.sh test </pre>
 
 
-5. uninstall driver
-<pre>$ mk.sh uninstall</pre>
-type `dmesg` to see below logs
-<pre>
-drv_hello: exit
-</pre>
-
-6. remove all build result
+4. remove all build result
 <pre>$ mk.sh clean</pre> 
 
 
