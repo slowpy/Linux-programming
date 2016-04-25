@@ -17,7 +17,7 @@ $ sudo apt-get libssl-dev
 #include < openssl/rand.h >
 </pre>
 
-2. set AES key length as `256` bits and key contents:
+2. set AES key `keylength`=256 bits and `aes_key` contents:
 <pre>
 int main(int argc, char **argv)
 {
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 ...
 </pre>
 
-3. set test plaintext as `X` assigne to `aes_input`:
+3. set test plaintext as `X` assigne to `aes_input` and `inputslength`=`:
 <pre>
 ...
     size_t inputslength = 1;
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 </pre>
 4. using AES blcok size is defined in `AES_BLOCK_SIZE` the value is `16`
 
-5. get initial `IV` for decryption and encryption
+5. get initial `iv_enc` for encryption
 <pre>
 ...
     RAND_bytes(iv_enc, AES_BLOCK_SIZE);
@@ -44,10 +44,11 @@ int main(int argc, char **argv)
 ...
 </pre>
 
-6. set output encryption buffer. for `inputslength=1` (bytes), `encslength=16` (bytes):
+6. set output encryption buffer `enc_out`. for `inputslength`=1 (bytes), `encslength`=16 (bytes):
 <pre>
 ...
 const size_t encslength = ((inputslength + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * AES_BLOCK_SIZE;
+unsigned char enc_out[encslength];
 </pre>
 
 7. for openssl using, set key to structure `AES_KEY`, key value and length is from `step2`:
