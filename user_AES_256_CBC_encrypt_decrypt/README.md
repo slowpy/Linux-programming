@@ -49,18 +49,27 @@ int main(int argc, char **argv)
 ...
 const size_t encslength = ((inputslength + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * AES_BLOCK_SIZE;
 unsigned char enc_out[encslength];
+unsigned char dec_out[inputslength];
 </pre>
 
-7. for openssl using, set key to structure AES_KEY `enc_key`, `aes_key` and `keylength` are from `step2`:
+7. for openssl using, set key to structure AES_KEY `enc_key`, `aes_key` and `keylength` are defined in `step2`:
 <pre>
     AES_KEY enc_key, dec_key;
     AES_set_encrypt_key(aes_key, keylength, &enc_key);
 </pre>
 
-8. encrypt the plaintext and get ciphertext
+8. encrypt the plaintext and get ciphertext.`enc_out` is defined in `step6`
 <pre>
 ...
 AES_cbc_encrypt(aes_input, enc_out, inputslength, &enc_key, iv_enc, AES_ENCRYPT);
+...
+</pre>
+
+9. decrypt the ciphertext. `dec_out` and `encslength` are defined in `step6`. `iv_dec` is defined in `step5`:
+<pre>
+...
+    AES_set_decrypt_key(aes_key, keylength, &dec_key);
+    AES_cbc_encrypt(enc_out, dec_out, encslength, &dec_key, iv_dec, AES_DECRYPT);
 ...
 </pre>
 
