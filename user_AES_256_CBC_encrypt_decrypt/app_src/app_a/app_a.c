@@ -27,9 +27,7 @@ int main(int argc, char **argv)
     int keylength=256;
     unsigned char aes_key[256/8]={"12345678901234567890123456789012"};
     
-    size_t inputslength = 0;
-    printf("Give an input's length:\n");
-    scanf("%lu", &inputslength);
+    size_t inputslength = 1;
 
     /* generate input with a given length */
     unsigned char aes_input[inputslength];
@@ -59,7 +57,7 @@ int main(int argc, char **argv)
     AES_set_decrypt_key(aes_key, keylength, &dec_key);
     AES_cbc_encrypt(enc_out, dec_out, encslength, &dec_key, iv_dec, AES_DECRYPT);
 
-    printf("original(size:%d bytes):\t",sizeof(aes_input));
+    printf("Plaintext(size:%d bytes):\t",sizeof(aes_input));
     hex_print(aes_input, sizeof(aes_input));
 
     printf("encrypt(size:%d bytes):\t",sizeof(enc_out));
