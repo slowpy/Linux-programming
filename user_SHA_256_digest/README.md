@@ -1,7 +1,5 @@
-#AES 256 CBC(Chipher Block Chaining) encrypt/decrypt Sample code
-This sample demo how to use AES 256 CBC to encrypt/decrypt plaintext. (256 means key length is 256 bits)
-
-![result link](http://139.162.35.49/image/Linux-Programming/AES_256_CBC_encryption_20160422.png)
+#SHA 256 Sample code
+This sample demo how to generate SHA 256 digest
 
 # How to setup build code environment
 1. install openssl library and header file for compiliation. you will sea header files installed in `/usr/include/openssl`
@@ -10,23 +8,21 @@ $ sudo apt-get libssl-dev
 </pre>
 
 #Code Description
-1. include header files:
+1. include header files: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_SHA_256_digest/app_src/app_a/app_a.c)
 <pre>
 ...
-#include <openssl/aes.h>
-#include <openssl/rand.h>
+#include <openssl/sha.h>
 </pre>
 
-2. set AES key length as `256` bits and key contents:
+2. use `SHA256_Init()`, `SHA256_Update()` and `SHA256_Final()` to generate digest: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_SHA_256_digest/app_src/app_a/app_a.c)
 <pre>
-int main(int argc, char **argv)
-{
-       int keylength=256;
-       unsigned char aes_key[256/8]={"12345678901234567890123456789012"};
+...
+    SHA256_Init(&ctx);
+    SHA256_Update(&ctx, (unsigned char *)data, sizeof(data));
+    SHA256_Final(results, &ctx);
 ...
 </pre>
 
-3.
 
 #How to test
 1. build code
@@ -35,7 +31,6 @@ int main(int argc, char **argv)
 2. check `build` directory and find out build result as below: 
 <pre>
 app_a - application
-lib_common.so - shared library
 </pre>
 
 3. run `mk.sh test` to test.
