@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 ...
 </pre>
 
-3. set test plaintext as `X` assigne to `aes_input` and `inputslength`=`:
+3. set test plaintext as `X` assigne to `aes_input` and `inputslength`=1:
 <pre>
 ...
     size_t inputslength = 1;
