@@ -22,6 +22,8 @@ case "$1" in
 	cd ./build
 	export LD_LIBRARY_PATH=$(pwd)
 	./app_a
+        echo "echo XXXXXXXXXX | sha256sum"
+        echo -n XXXXXXXXXX | sha256sum
 	cd .. ;;
 	*)
 	echo "step1: 'mk.sh build' to build code. 'mk.sh clean to clean build result'"
