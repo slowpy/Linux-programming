@@ -58,14 +58,14 @@ unsigned char dec_out[inputslength];
     AES_set_encrypt_key(aes_key, keylength, &enc_key);
 </pre>
 
-8. encrypt the plaintext and get ciphertext.`enc_out` is defined in `step6`
+8. encrypt the plaintext by using `AES_cbc_encrypt()` with `AES_ENCRYPT`.`enc_out` is defined in `step6`
 <pre>
 ...
 AES_cbc_encrypt(aes_input, enc_out, inputslength, &enc_key, iv_enc, AES_ENCRYPT);
 ...
 </pre>
 
-9. decrypt the ciphertext. `dec_out` and `encslength` are defined in `step6`. `iv_dec` is defined in `step5`:
+9. decrypt the ciphertext by using `AES_cbc_encrypt()` with `AES_DECRYPT`. `dec_out` and `encslength` are defined in `step6`. `iv_dec` is defined in `step5`:
 <pre>
 ...
     AES_set_decrypt_key(aes_key, keylength, &dec_key);
