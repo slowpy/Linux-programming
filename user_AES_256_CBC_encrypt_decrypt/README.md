@@ -51,7 +51,7 @@ const size_t encslength = ((inputslength + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * A
 unsigned char enc_out[encslength];
 </pre>
 
-7. for openssl using, set key to structure `AES_KEY`, key value and length is from `step2`:
+7. for openssl using, set key to structure AES_KEY `enc_key`, key value and length is from `step2`:
 <pre>
     AES_KEY enc_key, dec_key;
     AES_set_encrypt_key(aes_key, keylength, &enc_key);
