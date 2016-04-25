@@ -11,7 +11,7 @@ $ sudo apt-get libssl-dev
 1. include header files: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_SHA_256_digest/app_src/app_a/app_a.c)
 <pre>
 ...
-#include <openssl/sha.h>
+#include < openssl/sha.h >
 </pre>
 
 2. use `SHA256_Init()`, `SHA256_Update()` and `SHA256_Final()` to generate digest: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_SHA_256_digest/app_src/app_a/app_a.c)
