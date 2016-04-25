@@ -26,7 +26,42 @@ int main(int argc, char **argv)
 ...
 </pre>
 
-3.
+3. set test plaintext as `X` assigne to `aes_input`:
+<pre>
+...
+    size_t inputslength = 1;
+    unsigned char aes_input[inputslength];
+    memset(aes_input, 'X', inputslength);
+...
+</pre>
+4. using AES blcok size is defined in `AES_BLOCK_SIZE` the value is `16`
+
+5. get initial `IV` for decryption and encryption
+<pre>
+...
+    RAND_bytes(iv_enc, AES_BLOCK_SIZE);
+    memcpy(iv_dec, iv_enc, AES_BLOCK_SIZE);
+...
+</pre>
+
+6. set output encryption buffer. for `inputslength=1` (bytes), `encslength=16` (bytes):
+<pre>
+...
+const size_t encslength = ((inputslength + AES_BLOCK_SIZE) / AES_BLOCK_SIZE) * AES_BLOCK_SIZE;
+</pre>
+
+7. for openssl using, set key to structure `AES_KEY`, key value and length is from `step2`:
+<pre>
+    AES_KEY enc_key, dec_key;
+    AES_set_encrypt_key(aes_key, keylength, &enc_key);
+</pre>
+
+8. encrypt the plaintext and get ciphertext
+<pre>
+...
+AES_cbc_encrypt(aes_input, enc_out, inputslength, &enc_key, iv_enc, AES_ENCRYPT);
+...
+</pre>
 
 #How to test
 1. build code
