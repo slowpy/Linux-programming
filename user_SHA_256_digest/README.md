@@ -35,7 +35,7 @@ app_a - application
 
 3. run `mk.sh test` to test.
 <pre>$ mk.sh test </pre>
-![result link](http://139.162.35.49/image/Linux-Programming/RSA_20160422_1.png)
+![result link](http://139.162.35.49/image/Linux-Programming/SHA_256_digest_20160425.png)
 
 4. remove all build result
 <pre>$ mk.sh clean</pre> 
