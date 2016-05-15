@@ -1,5 +1,13 @@
 #Basic thread Sample code
-This sample demo how to start thread.
+This sample demo how to create thread.
+
+#Code Description
+1. create thread: [app_a.c](https://github.com/ivan0124/Linux-programming/blob/master/user_basic_thread/app_src/app_a/app_a.c)
+<pre>
+...
+ret=pthread_create(&id,NULL,(void *) thread,NULL);
+...
+</pre>
 
 #How to test
 1. build code
