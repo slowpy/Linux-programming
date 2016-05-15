@@ -28,7 +28,7 @@ int main(void)
 		sleep(2);
 	}
 #endif
-	pthread_join(id,NULL);//等待線程（pthread）結束
+	pthread_join(id,NULL);//wait（pthread）end up
 
         
         printf("main process exit\n");
