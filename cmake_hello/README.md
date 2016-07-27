@@ -3,7 +3,7 @@
 sudo apt-get install cmake
 </pre>
 
-##generate Makefile for Linux
+##generate Makefile for Linux (in cmake_test folder)
 <pre>
 cmake -G "Unix Makefiles"
 </pre>
