@@ -1,7 +1,7 @@
 /*function implementation*/
 #include <stdio.h>
 
-void testFuncA()
+void testFuncB()
 {
-    printf("run testFuncA\n");
+    printf("run testFuncB\n");
 }
