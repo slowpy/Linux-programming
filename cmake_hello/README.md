@@ -3,7 +3,12 @@
 sudo apt-get install cmake
 </pre>
 
-##generate Makefile for Linux (in cmake_test folder)
+# Download and setup tools for development (on Windows)
 <pre>
-cmake -G "Unix Makefiles"
+https://cmake.org/download/
+</pre>
+
+##generate Makefile for Linux or Windows (in cmake_test folder)
+<pre>
+cmake .
 </pre>
