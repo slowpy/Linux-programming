@@ -46,4 +46,7 @@ std::string ECC::encrypt(const std::string & plainText, const std::string & peer
 
 }
 
-
+std::string ECC::decrypt(const std::string & encryptedText)
+{
+    return "decrypted text";
+}
