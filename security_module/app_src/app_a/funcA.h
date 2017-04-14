@@ -1,0 +1,3 @@
+/*function declartion*/
+void testFuncA();
+
