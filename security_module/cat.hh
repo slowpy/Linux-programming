@@ -17,4 +17,5 @@ public:
     std::string get_private_key(const std::string & format);
     std::string get_public_key(const std::string & format);
     std::string get_ecdh_key(const std::string & format);
+    std::string encrypt(const std::string & plainText, const std::string & peerPublicKey, const std::string & ephemCurveName);
 };

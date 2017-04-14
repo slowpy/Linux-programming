@@ -23,20 +23,27 @@ ECC::ECC(const string & curveName, const std::string & KDF_HASH,  \
 
 std::string ECC::get_private_key(const std::string & format)
 {
-    cout << "ECC::get_private_key" << endl;
+    //cout << "ECC::get_private_key" << endl;
     return "private key: format(" + format + ")";
 }
 
 std::string ECC::get_public_key(const std::string & format)
 {
-    cout << "ECC::get_public_key" << endl;
+    //cout << "ECC::get_public_key" << endl;
     return "public key: format(" + format + ")";
 }
 
 std::string ECC::get_ecdh_key(const std::string & format)
 {
-    cout << "ECC::get_ecdh_key" << _name << endl;
+    //cout << "ECC::get_ecdh_key" << endl;
     return "secret key: format(" + format + ")";
+}
+
+std::string ECC::encrypt(const std::string & plainText, const std::string & peerPublicKey, const std::string & ephemCurveName)
+{
+    //cout << "ECC::encrypt" << endl;
+    return "encrypted text";
+
 }
 
 
