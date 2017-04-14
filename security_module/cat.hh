@@ -14,5 +14,7 @@ class ECC
 public:
     ECC(const std::string & curveName, const std::string & KDF_HASH,  \
         const std::string & HMAC_HASH, const std::string & CipherName);
-    std::string speak();
+    std::string get_private_key(const std::string & format);
+    std::string get_public_key(const std::string & format);
+    std::string get_ecdh_key(const std::string & format);
 };

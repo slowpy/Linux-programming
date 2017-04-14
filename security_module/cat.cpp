@@ -21,8 +21,22 @@ ECC::ECC(const string & curveName, const std::string & KDF_HASH,  \
     cout << "ECC::CipherName = " << CipherName << endl;
 }
 
-std::string ECC::speak()
+std::string ECC::get_private_key(const std::string & format)
 {
-    cout << "ECC~~~~~~~~! I'm " << _name << endl;
-    return "12345";
+    cout << "ECC::get_private_key" << endl;
+    return "private key: format(" + format + ")";
 }
+
+std::string ECC::get_public_key(const std::string & format)
+{
+    cout << "ECC::get_public_key" << endl;
+    return "public key: format(" + format + ")";
+}
+
+std::string ECC::get_ecdh_key(const std::string & format)
+{
+    cout << "ECC::get_ecdh_key" << _name << endl;
+    return "secret key: format(" + format + ")";
+}
+
+
