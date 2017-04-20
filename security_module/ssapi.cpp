@@ -14,6 +14,21 @@ SecureElement::SecureElement()
     cout << "SecureElement()" << endl;
 }
 
+std::string SecureElement::take_ownership(const std::string & password)
+{
+    cout << "SecureElement::take_ownership()" << endl;
+    return "success";
+
+}
+
+std::string SecureElement::set_ownership(const std::string & password)
+{
+    cout << "SecureElement::set_ownership()" << endl;
+    return "success";
+
+}
+
+
 std::string SecureElement::app_secure_boot(const std::string & enable)
 {
     cout << "SecureElement::app_secure_boot()" << endl;

@@ -11,6 +11,23 @@ public:
     /*SecureElement() : constructor*/
     SecureElement();
 
+    /*take_ownership(): take TPM2.0 ownership 
+      input parameters:
+        password : password to take ownership
+      return value:
+        "success" or "fail"
+    */
+    std::string take_ownership(const std::string & password);
+
+    /*set_ownership(): set TPM2.0 ownership password
+      input parameters:
+        password          : password to set ownership
+        confirmedPassword : password again to confirm
+      return value:
+        "success" or "fail"
+    */
+    std::string set_ownership(const std::string & password);
+
     /*app_secure_boot(): enable/disable application secure boot
       input parameters:
         enable : "true" for enable, "false" for disable

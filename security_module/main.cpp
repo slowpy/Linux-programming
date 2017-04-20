@@ -9,6 +9,8 @@ int main()
     /* SecureElement class scenario                                                                                      */
     /*********************************************************************************************************************/
     SecureElement TPM20;
+    TPM20.take_ownership("123456");
+    TPM20.set_ownership("654321");
     TPM20.app_secure_boot("ture");
     TPM20.set_app_secure_boot_param("app1;app2;app3","app1_config;app2_config;app3_config");
     TPM20.store_data("sensitive", "AES-256", "SIM-PIN", "123456");
