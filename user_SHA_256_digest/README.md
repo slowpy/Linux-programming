@@ -4,7 +4,7 @@ This sample demo how to generate SHA 256 digest
 # How to setup build code environment
 1. install openssl library and header file for compiliation. you will sea header files installed in `/usr/include/openssl`
 <pre>
-$ sudo apt-get libssl-dev
+$ sudo apt-get install libssl-dev
 </pre>
 
 #Code Description
