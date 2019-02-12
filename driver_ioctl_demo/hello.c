@@ -18,7 +18,7 @@ static int hello_close(struct inode *inode, struct file *filp) {
     return 0;
 }
 
-static int hello_ioctl(struct inode *inode, struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
+static int hello_ioctl( struct file *filp, unsigned int ioctl_num, unsigned long ioctl_param) {
     
     printk("<1>hello_driver: ioctl\n");
     
